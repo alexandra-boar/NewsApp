@@ -12,17 +12,20 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var articlesTable: UITableView!
     
     var viewModel = ArticleViewModel()
-    var articles: [Article]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         articlesTable.delegate = self
         articlesTable.dataSource = self
-        viewModel.loadArticles { article, error in
-            self.articles = article
-            
-            DispatchQueue.main.async {
-                self.articlesTable.reloadData()
+        articlesTable.register(UINib.init(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableViewCell")
+        
+        viewModel.loadArticles { error in
+            if let error {
+                print(error)
+            } else {
+                DispatchQueue.main.async {
+                    self.articlesTable.reloadData()
+                }
             }
         }
     }
@@ -31,15 +34,20 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        articles?.count ?? 0
+        viewModel.getNumberOfArticles()
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "basicCell", for: indexPath)
-        cell.textLabel?.text = articles?[indexPath.row].title
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell", for: indexPath) as! CustomTableViewCell
+        
+        let title = viewModel.getArticleTitle(index: indexPath.row)
+//        print(title)
+        let author = viewModel.getArticleAuthor(index: indexPath.row)
+//        print(author)
+        
+        cell.titleLabel.text = title
+        cell.authorLabel.text = author
         return cell
     }
-    
-    
 }
 

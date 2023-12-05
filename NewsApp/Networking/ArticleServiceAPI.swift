@@ -9,11 +9,11 @@ import Foundation
 
 class ArticleServiceAPI {
     
-    private let url  = K.url
+    private let url  = Constants.url
     
     func loadArticles(completion: @escaping ([Article]?, Error?) -> ()) {
         let urlRequest = URLRequest(url: url!)
-        let request = URLSession.shared.dataTask(with: urlRequest) { [weak self] (data, response, error) in
+        let request = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
                 if let data {
                     let decoder = JSONDecoder()
                     do {

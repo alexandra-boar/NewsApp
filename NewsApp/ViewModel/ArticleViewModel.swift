@@ -9,21 +9,52 @@ import Foundation
 
 class ArticleViewModel {
     
-//    var articleData: [Article]?
+    var articleList: [Article]?
     
-    func loadArticles(completion: @escaping ([Article]?, Error?) -> ()){
-        
-        let articleService = ArticleServiceAPI()
-        
+    let articleService = ArticleServiceAPI()
+    
+    func loadArticles(completion: @escaping (Error?) -> ()){
+
         articleService.loadArticles { articles, error in
             if let articles {
-//                print(articles)
-//                self.articleData = articles
-                completion(articles, nil)
+                self.articleList = articles
+                completion(nil)
             } else if let error {
-                completion(nil, error)
+                completion(error)
             }
         }
     }
     
+
+    private func getArticle(index: Int) -> Article? {
+        if let list = articleList {
+            return list[index]
+        } else {
+            return nil
+        }
+    }
+    
+    // cell config
+    func getNumberOfArticles() -> Int {
+        return articleList?.count ?? 0
+    }
+    
+    func getArticleTitle(index: Int) -> String? {
+        print(getArticle(index: index)?.title)
+        if let title = getArticle(index: index)?.title {
+            return (title)
+        } else {
+            return (nil)
+        }
+    }
+    
+    func getArticleAuthor(index: Int) -> String? {
+        print(getArticle(index: index)?.author)
+        if let author = getArticle(index: index)?.author {
+            return (author)
+        } else {
+            return ("Unknown author")
+        }
+        
+    }
 }
