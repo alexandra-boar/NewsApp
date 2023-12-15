@@ -13,6 +13,8 @@ class ArticleViewModel {
     
     let articleService = ArticleServiceAPI()
     
+    let defaults = UserDefaults.standard
+    
     func loadArticles(completion: @escaping (Error?) -> ()){
 
         articleService.loadArticles { articles, error in
@@ -58,11 +60,29 @@ class ArticleViewModel {
     }
     
     func getArticleContent(index: Int) -> String? {
-        print(getArticle(index: index)?.content)
+//        print(getArticle(index: index)?.content)
         if let content = getArticle(index: index)?.content {
             return (content)
         } else {
             return ("Could not load content")
         }
     }
+    
+    func getArticleUrl(index: Int) -> String? {
+        if let url = getArticle(index: index)?.url {
+            return (url)
+        } else {
+            return ("Could not load url")
+        }
+    }
+    
+//    func getImageUrl(index: Int) -> String? {
+//        if let imageUrl = getArticle(index: index)?.urlToImage {
+//            print(imageUrl)
+//            return (imageUrl)
+//        } else {
+//            return ("Could not load image")
+//        }
+//    }
+    
 }

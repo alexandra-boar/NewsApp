@@ -14,9 +14,11 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var detailLabel: UILabel!
     
+    @IBOutlet weak var detailImage: UIImageView!
     
     var articleContent: String?
     var articleTitle: String?
+    var articleImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,13 +27,9 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         detailLabel.numberOfLines = 0
         
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.title = "title"
-        navigationItem.
         
-        
-        
-                if let articleContent {
-                    detailLabel.text = articleContent }
-                }
+        if let articleContent {
+            detailLabel.text = articleContent }
+    }
     }
     
