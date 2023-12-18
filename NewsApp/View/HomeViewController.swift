@@ -14,16 +14,9 @@ class HomeViewController: UIViewController {
     var viewModel = ArticleViewModel()
     
     let defaults = UserDefaults()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        self.title = "News"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        
-        articlesTable.delegate = self
-        articlesTable.dataSource = self
-        articlesTable.register(UINib.init(nibName: Constants.customCellIdentifier, bundle: nil), forCellReuseIdentifier: Constants.customCellIdentifier)
         
         viewModel.loadArticles { error in
             if let error {
@@ -34,6 +27,15 @@ class HomeViewController: UIViewController {
                 }
             }
         }
+        
+        self.title = "News"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        articlesTable.delegate = self
+        articlesTable.dataSource = self
+        articlesTable.register(UINib.init(nibName: Constants.customCellIdentifier, bundle: nil), forCellReuseIdentifier: Constants.customCellIdentifier)
+        
+        
     }
 }
 
@@ -65,11 +67,22 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         UserDefaults.standard.setValue(cell.isSelected, forKey: urlKey)
         cell.checkmarkImage.image = UIImage(systemName: Constants.checkedImage)
         
+        
+        
         if let vc = storyboard?.instantiateViewController(withIdentifier: Constants.detailViewIdentifier) as? DetailViewController {
             vc.articleContent = viewModel.getArticleContent(index: indexPath.row)
-            navigationController?.pushViewController(vc, animated: true)
             vc.title = viewModel.getArticleAuthor(index: indexPath.row)
+            navigationController?.pushViewController(vc, animated: true)
             
+            viewModel.loadImage(index: indexPath.row, completion: { image in
+                if let image {
+                    DispatchQueue.main.async {
+                        vc.articleImage = image
+                    }
+                } else {
+                    return
+                }
+            })
         }
     }
 }

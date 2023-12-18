@@ -99,7 +99,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="detailImage" destination="kjK-ZE-5DP" id="M8x-sF-xkc"/>
+                        <outlet property="articleImageView" destination="kjK-ZE-5DP" id="M8x-sF-xkc"/>
                         <outlet property="detailLabel" destination="U9y-2t-mEL" id="Cwb-nG-ZLf"/>
                         <outlet property="scrollView" destination="j8C-yN-3ky" id="Or2-XT-1wR"/>
                     </connections>

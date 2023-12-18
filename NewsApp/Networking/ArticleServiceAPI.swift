@@ -30,6 +30,34 @@ class ArticleServiceAPI {
         request.resume()
         
     }
-}
     
+    func loadArticleImage(urlString: String, completion: @escaping ( _ image: UIImage?) -> ()) {
+        let urlRequest = URLRequest(url: url!)
+        print(urlString)
+        let request = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                    print("statusCode: \(httpResponse.statusCode)")
+                }
+            
+            if let data {
+                if let image = UIImage(data: data) {
+                    completion(image)
+                    return
+                } else {
+                    print("no image")
+                }
+            }
+            
+            
+            if let error {
+                print("Error \(error)")
+                completion(nil)
+                return
+            }
+        }
+            request.resume()
+    }
+}
+
 
