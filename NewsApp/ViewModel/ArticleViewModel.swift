@@ -6,16 +6,14 @@
 //
 
 import Foundation
-import UIKit
 
 class ArticleViewModel {
     
     var articleList: [Article]?
-    var articleImage: UIImage?
     let articleService = ArticleServiceAPI()
     let defaults = UserDefaults.standard
     
-    func loadArticles(completion: @escaping (Error?) -> ()){
+    func loadArticles(completion: @escaping (Error?) -> ()) {
         articleService.loadArticles { articles, error in
             if let articles {
                 self.articleList = articles
@@ -40,16 +38,17 @@ class ArticleViewModel {
     }
     
     func getArticleTitle(index: Int) -> String? {
-        //        print(getArticle(index: index)?.title)
+        //    print(getArticle(index: index)?.title)
         if let title = getArticle(index: index)?.title {
             return (title)
         } else {
             return (nil)
         }
+        
     }
     
     func getArticleAuthor(index: Int) -> String? {
-        //        print(getArticle(index: index)?.author)
+        //    print(getArticle(index: index)?.author)
         if let author = getArticle(index: index)?.author {
             return (author)
         } else {
@@ -58,12 +57,13 @@ class ArticleViewModel {
     }
     
     func getArticleContent(index: Int) -> String? {
-        //        print(getArticle(index: index)?.content)
+        //    print(getArticle(index: index)?.content)
         if let content = getArticle(index: index)?.content {
             return (content)
         } else {
             return ("Could not load content")
         }
+        
     }
     
     func getArticleUrl(index: Int) -> String? {
@@ -74,42 +74,12 @@ class ArticleViewModel {
         }
     }
     
-    func getImageUrl(index: Int) -> String? {
-        if let imageUrl = getArticle(index: index)?.urlToImage {
-            print(imageUrl)
-            return (imageUrl)
-        } else {
-            return ("Could not load image")
-        }
-    }
-    
-    func loadImage(index: Int, completion: @escaping (UIImage?) -> ()) {
-        guard let urlString = getImageUrl(index: index) else {
-            print("error")
-            return
-        }
-        articleService.loadArticleImage(urlString: urlString) { image in
-            if let image {
-                self.articleImage = image
-                completion(image)
-            } else {
-                print("error")
-            }
-        }
-    }
+    //  func getImageUrl(index: Int) -> String? {
+    //    if let imageUrl = getArticle(index: index)?.urlToImage {
+    //      print(imageUrl)
+    //      return (imageUrl)
+    //    } else {
+    //       return (“Could not load image”)
+    //    }
+    //  }
 }
-
-
-
-
-
-//    func configDetailView(index: Int) -> DetailViewController {
-//        let articleContent = getArticleContent(index: index)
-//        let imageUrl = getArticleUrl(index: index)
-//        let title = getArticleAuthor(index: index)
-//
-//
-//        articleService.loadArticleImage
-//
-//        }
-//    }
