@@ -32,8 +32,9 @@ class ArticleServiceAPI {
     }
     
     func loadArticleImage(urlString: String, completion: @escaping ( _ image: UIImage?) -> ()) {
-        let urlRequest = URLRequest(url: url!)
-        print(urlString)
+        let imageURL = URL(string: urlString)
+        let urlRequest = URLRequest(url: imageURL!)
+        print(imageURL)
         let request = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             
             if let httpResponse = response as? HTTPURLResponse {

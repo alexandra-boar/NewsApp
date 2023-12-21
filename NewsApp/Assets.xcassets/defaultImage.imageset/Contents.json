@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "dog-puppy-on-garden-royalty-free-image-1586966191.jpg",
+      "filename" : "defaultImage.jpeg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "defaultImage 1.jpeg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "defaultImage 2.jpeg",
       "idiom" : "universal",
       "scale" : "3x"
     }

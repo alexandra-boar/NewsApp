@@ -1,18 +1,17 @@
 //
-//  ArticlesViewModel.swift
+//  DetailViewModel.swift
 //  NewsApp
 //
-//  Created by Alexandra Boar on 29.11.2023.
+//  Created by Alexandra Boar on 19.12.2023.
 //
 
 import Foundation
 import UIKit
 
-class ArticleViewModel {
+class DetailViewModel {
     
     var articleList: [Article]?
     let articleService = ArticleServiceAPI()
-    let defaults = UserDefaults.standard
     
     func loadArticles(completion: @escaping (Error?) -> ()){
         articleService.loadArticles { articles, error in
@@ -33,19 +32,6 @@ class ArticleViewModel {
         }
     }
     
-    // cell config
-    func getNumberOfArticles() -> Int {
-        return articleList?.count ?? 0
-    }
-    
-    func getArticleTitle(index: Int) -> String? {
-        if let title = getArticle(index: index)?.title {
-            return (title)
-        } else {
-            return (nil)
-        }
-    }
-    
     func getArticleAuthor(index: Int) -> String? {
         if let author = getArticle(index: index)?.author {
             return (author)
@@ -62,14 +48,6 @@ class ArticleViewModel {
         }
     }
     
-    func getArticleUrl(index: Int) -> String? {
-        if let url = getArticle(index: index)?.url {
-            return (url)
-        } else {
-            return nil
-        }
-    }
-    
     func getImageUrl(index: Int) -> String? {
         if let imageUrl = getArticle(index: index)?.urlToImage {
             print(imageUrl)
@@ -78,5 +56,17 @@ class ArticleViewModel {
             return nil
         }
     }
+    
+    
+    func loadImage(urlString: String, completion: @escaping (UIImage?) -> ()) {
+        articleService.loadArticleImage(urlString: urlString) { image in
+            if let image {
+                completion(image)
+            } else {
+                print("Couldn't load image in DetailViewModel")
+            }
+        }
+    }
+    
+    
 }
-

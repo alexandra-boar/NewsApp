@@ -11,14 +11,14 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var articlesTable: UITableView!
     
-    var viewModel = ArticleViewModel()
+    var articleViewModel = ArticleViewModel()
     
     let defaults = UserDefaults()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.loadArticles { error in
+        articleViewModel.loadArticles { error in
             if let error {
                 print(error)
             } else {
@@ -34,8 +34,7 @@ class HomeViewController: UIViewController {
         articlesTable.delegate = self
         articlesTable.dataSource = self
         articlesTable.register(UINib.init(nibName: Constants.customCellIdentifier, bundle: nil), forCellReuseIdentifier: Constants.customCellIdentifier)
-        
-        
+
     }
 }
 
@@ -43,12 +42,12 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.getNumberOfArticles()
+        articleViewModel.getNumberOfArticles()
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.customCellIdentifier, for: indexPath) as! CustomTableViewCell
-        cell.configureCell(viewModel: viewModel, indexPath: indexPath)
+        cell.configureCell(viewModel: articleViewModel, indexPath: indexPath)
         return cell
     }
     
@@ -59,30 +58,21 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! CustomTableViewCell
         
-        guard let urlKey = viewModel.getArticleUrl(index: indexPath.row) else {
+        guard let urlKey = articleViewModel.getArticleUrl(index: indexPath.row) else {
             print("Could not find urlKey")
             return
         }
-        
         UserDefaults.standard.setValue(cell.isSelected, forKey: urlKey)
+        
         cell.checkmarkImage.image = UIImage(systemName: Constants.checkedImage)
         
-        
-        
         if let vc = storyboard?.instantiateViewController(withIdentifier: Constants.detailViewIdentifier) as? DetailViewController {
-            vc.articleContent = viewModel.getArticleContent(index: indexPath.row)
-            vc.title = viewModel.getArticleAuthor(index: indexPath.row)
-            navigationController?.pushViewController(vc, animated: true)
-            
-            viewModel.loadImage(index: indexPath.row, completion: { image in
-                if let image {
-                    DispatchQueue.main.async {
-                        vc.articleImage = image
-                    }
-                } else {
-                    return
-                }
-            })
+            vc.articleContent = articleViewModel.getArticleContent(index: indexPath.row)
+            vc.title = articleViewModel.getArticleAuthor(index: indexPath.row)
+            let imageURL = articleViewModel.getImageUrl(index: indexPath.row)
+            vc.imageURLString = imageURL
+            self.navigationController?.pushViewController(vc, animated: true)
+    
         }
     }
 }

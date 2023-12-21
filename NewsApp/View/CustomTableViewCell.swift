@@ -32,7 +32,6 @@ class CustomTableViewCell: UITableViewCell {
         
         self.titleLabel.text = title
         self.authorLabel.text = author
-        print("titleLabel.text")
         
         if defaults.bool(forKey: urlKey!) == true {
             self.checkmarkImage.image = UIImage(systemName: Constants.checkedImage)
