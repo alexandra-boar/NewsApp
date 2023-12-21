@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "ios-checkmark-circle-11 1.png",
+      "filename" : "defaultImage.jpeg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "ios-checkmark-circle-11.png",
+      "filename" : "defaultImage 1.jpeg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "ios-checkmark-circle-11 2.png",
+      "filename" : "defaultImage 2.jpeg",
       "idiom" : "universal",
       "scale" : "3x"
     }

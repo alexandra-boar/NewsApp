@@ -13,4 +13,9 @@ struct Constants {
     static let detailViewIdentifier = "Detail"
     
     static let customCellIdentifier = "CustomTableViewCell"
+    
+    static let checkedImage = "checkmark.circle.fill"
+    
+    static let uncheckedImage = "checkmark.circle"
+
 }
