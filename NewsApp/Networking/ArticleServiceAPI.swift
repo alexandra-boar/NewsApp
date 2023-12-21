@@ -19,6 +19,7 @@ class ArticleServiceAPI {
                 let decoder = JSONDecoder()
                 do {
                     let articlesResponse = try decoder.decode(ArticleResponseModel.self, from: data)
+                    //                        print(articlesResponse)
                     completion(articlesResponse.articles, nil)
                 } catch let error {
                     print(error)
@@ -26,11 +27,10 @@ class ArticleServiceAPI {
                 }
             }
         }
-        
         request.resume()
-        
     }
     
+   
     func loadArticleImage(urlString: String, completion: @escaping ( _ image: UIImage?) -> ()) {
         let imageURL = URL(string: urlString)
         let urlRequest = URLRequest(url: imageURL!)
@@ -38,8 +38,8 @@ class ArticleServiceAPI {
         let request = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             
             if let httpResponse = response as? HTTPURLResponse {
-                    print("statusCode: \(httpResponse.statusCode)")
-                }
+                print("statusCode: \(httpResponse.statusCode)")
+            }
             
             if let data {
                 if let image = UIImage(data: data) {
@@ -57,8 +57,7 @@ class ArticleServiceAPI {
                 return
             }
         }
-            request.resume()
+        request.resume()
     }
 }
-
 

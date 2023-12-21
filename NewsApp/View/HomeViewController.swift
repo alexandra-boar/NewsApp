@@ -14,9 +14,12 @@ class HomeViewController: UIViewController {
     var articleViewModel = ArticleViewModel()
     
     let defaults = UserDefaults()
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
+        articlesTable.delegate = self
+        articlesTable.dataSource = self
+        articlesTable.register(UINib.init(nibName: Constants.customCellIdentifier, bundle: nil), forCellReuseIdentifier: Constants.customCellIdentifier)
         
         articleViewModel.loadArticles { error in
             if let error {
@@ -40,7 +43,6 @@ class HomeViewController: UIViewController {
 
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
-    
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         articleViewModel.getNumberOfArticles()
     }
@@ -50,7 +52,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configureCell(viewModel: articleViewModel, indexPath: indexPath)
         return cell
     }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         100.0
     }
@@ -72,8 +73,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             let imageURL = articleViewModel.getImageUrl(index: indexPath.row)
             vc.imageURLString = imageURL
             self.navigationController?.pushViewController(vc, animated: true)
-    
         }
+            
     }
 }
 

@@ -48,16 +48,6 @@ class DetailViewModel {
         }
     }
     
-    func getImageUrl(index: Int) -> String? {
-        if let imageUrl = getArticle(index: index)?.urlToImage {
-            print(imageUrl)
-            return (imageUrl)
-        } else {
-            return nil
-        }
-    }
-    
-    
     func loadImage(urlString: String, completion: @escaping (UIImage?) -> ()) {
         articleService.loadArticleImage(urlString: urlString) { image in
             if let image {

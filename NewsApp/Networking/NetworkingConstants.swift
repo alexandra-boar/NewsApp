@@ -17,4 +17,5 @@ struct Constants {
     static let checkedImage = "checkmark.circle.fill"
     
     static let uncheckedImage = "checkmark.circle"
+
 }

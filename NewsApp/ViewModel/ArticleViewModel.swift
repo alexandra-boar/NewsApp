@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 class ArticleViewModel {
     
@@ -14,7 +13,7 @@ class ArticleViewModel {
     let articleService = ArticleServiceAPI()
     let defaults = UserDefaults.standard
     
-    func loadArticles(completion: @escaping (Error?) -> ()){
+    func loadArticles(completion: @escaping (Error?) -> ()) {
         articleService.loadArticles { articles, error in
             if let articles {
                 self.articleList = articles
@@ -44,6 +43,7 @@ class ArticleViewModel {
         } else {
             return (nil)
         }
+        
     }
     
     func getArticleAuthor(index: Int) -> String? {
@@ -60,6 +60,7 @@ class ArticleViewModel {
         } else {
             return ("Could not load content")
         }
+        
     }
     
     func getArticleUrl(index: Int) -> String? {
@@ -79,4 +80,3 @@ class ArticleViewModel {
         }
     }
 }
-

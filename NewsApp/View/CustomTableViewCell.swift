@@ -13,14 +13,11 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var checkmarkImage: UIImageView!
     
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         checkmarkImage.image = UIImage(systemName: Constants.checkedImage)
         titleLabel.font = UIFont.boldSystemFont(ofSize: 15.0)
         authorLabel.font = UIFont.systemFont(ofSize: 15.0)
-        
     }
     
     func configureCell(viewModel: ArticleViewModel, indexPath: IndexPath) {
@@ -40,4 +37,6 @@ class CustomTableViewCell: UITableViewCell {
         }
         
     }
+
+    
 }

@@ -63,4 +63,3 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
 }
-
