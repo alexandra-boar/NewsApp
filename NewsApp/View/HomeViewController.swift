@@ -65,11 +65,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
         UserDefaults.standard.setValue(cell.isSelected, forKey: urlKey)
         
+        print("Article URL: \(articleViewModel.getArticleUrl(index: indexPath.row) ?? "Can't find Article URL")" )
+        
         cell.checkmarkImage.image = UIImage(systemName: Constants.checkedImage)
         
         if let vc = storyboard?.instantiateViewController(withIdentifier: Constants.detailViewIdentifier) as? DetailViewController {
+    
             vc.articleContent = articleViewModel.getArticleContent(index: indexPath.row)
-            vc.title = articleViewModel.getArticleAuthor(index: indexPath.row)
+            vc.articleAuthor = articleViewModel.getArticleAuthor(index: indexPath.row)
+            vc.articleURLString = articleViewModel.getArticleUrl(index: indexPath.row)
             let imageURL = articleViewModel.getImageUrl(index: indexPath.row)
             vc.imageURLString = imageURL
             self.navigationController?.pushViewController(vc, animated: true)
