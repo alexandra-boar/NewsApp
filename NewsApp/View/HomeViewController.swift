@@ -33,11 +33,6 @@ class HomeViewController: UIViewController {
         
         self.title = "News"
         navigationController?.navigationBar.prefersLargeTitles = true
-        
-        articlesTable.delegate = self
-        articlesTable.dataSource = self
-        articlesTable.register(UINib.init(nibName: Constants.customCellIdentifier, bundle: nil), forCellReuseIdentifier: Constants.customCellIdentifier)
-
     }
 }
 
