@@ -33,6 +33,12 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         configureTextView()
         loadImage(with: imageURLString)
     }
+   
+    
+    
+    
+    
+    
     
     func configureTextView() {
         guard let articleContent, let articleURLString else {
@@ -41,16 +47,33 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         detailTextView.delegate = self
         detailTextView.isEditable = false
         detailTextView.isUserInteractionEnabled = true
-        let attributedString = NSMutableAttributedString(string: articleContent)
-        let attributedRange = (attributedString.string as NSString).range(of: "chars")
+        
+        
+        //Split the text into an array
+        var splitContentArray = articleContent.components(separatedBy: ".")
+             
+        // Make content an attributed string:
+        let attributedStringContent = NSMutableAttributedString(string: articleContent)
+        
+        //Create the range taht will display the link
+        let linkRange = (attributedStringContent.string as NSString).range(of: splitContentArray[splitContentArray.count - 1])
+        
+        //Assign the link to that range
         let urlString = articleURLString
-        attributedString.setAttributes([.link: urlString], range: attributedRange)
-        detailTextView.attributedText = attributedString
+        attributedStringContent.setAttributes([.link: urlString], range: linkRange)
+        
+        //Add the new attributed content to the textview
+        detailTextView.attributedText = attributedStringContent
+        
+        //Configure link font
         detailTextView.font = UIFont.systemFont(ofSize: 17)
         self.detailTextView.linkTextAttributes = [
             .foregroundColor: UIColor.blue,
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ]
+        
+        //replace linkRange text with "Read more"
+        detailTextView.textStorage.replaceCharacters(in: linkRange, with: "Read more")
     }
     
     func loadImage(with string: String?) {

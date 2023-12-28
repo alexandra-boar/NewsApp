@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class DetailViewModel {
-    var article: Article?
+    
     let articleService = ArticleServiceAPI()
     
     func loadImage(urlString: String, completion: @escaping (UIImage?) -> ()) {
