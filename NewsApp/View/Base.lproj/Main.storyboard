@@ -47,56 +47,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j8C-yN-3ky">
-                                <rect key="frame" x="20" y="59" width="353" height="749"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bJ2-s6-LCy" userLabel="Container View">
-                                        <rect key="frame" x="0.0" y="0.0" width="353" height="280.33333333333331"/>
-                                        <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kjK-ZE-5DP">
-                                                <rect key="frame" x="0.0" y="0.0" width="353" height="250"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SUH-v1-sXB">
-                                                <rect key="frame" x="0.0" y="76" width="353" height="128"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="250" id="NHG-Fj-fFZ"/>
-                                                </constraints>
-                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                <color key="textColor" systemColor="labelColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
-                                        </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="bJ2-s6-LCy" firstAttribute="trailing" secondItem="LK9-W7-9sS" secondAttribute="trailing" id="Mbb-IC-i8X"/>
-                                    <constraint firstItem="bJ2-s6-LCy" firstAttribute="bottom" secondItem="LK9-W7-9sS" secondAttribute="bottom" id="SXZ-y6-cyG"/>
-                                    <constraint firstItem="LK9-W7-9sS" firstAttribute="top" secondItem="bJ2-s6-LCy" secondAttribute="top" id="TQ0-aS-0dY"/>
-                                    <constraint firstItem="bJ2-s6-LCy" firstAttribute="leading" secondItem="LK9-W7-9sS" secondAttribute="leading" id="fVt-v0-tlW"/>
-                                    <constraint firstItem="bJ2-s6-LCy" firstAttribute="width" secondItem="C22-VP-hXr" secondAttribute="width" id="kuq-1y-p1e"/>
-                                </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="LK9-W7-9sS"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="C22-VP-hXr"/>
-                            </scrollView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kjK-ZE-5DP">
+                                <rect key="frame" x="0.0" y="301" width="393" height="250"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SUH-v1-sXB">
+                                <rect key="frame" x="20" y="362" width="353" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tHd-HI-hHR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="j8C-yN-3ky" firstAttribute="leading" secondItem="tHd-HI-hHR" secondAttribute="leading" constant="20" id="a4V-PS-Q2H"/>
-                            <constraint firstItem="j8C-yN-3ky" firstAttribute="top" secondItem="tHd-HI-hHR" secondAttribute="top" id="dAa-4J-jYo"/>
-                            <constraint firstItem="tHd-HI-hHR" firstAttribute="bottom" secondItem="j8C-yN-3ky" secondAttribute="bottom" constant="10" id="feO-l3-GKq"/>
-                            <constraint firstItem="tHd-HI-hHR" firstAttribute="trailing" secondItem="j8C-yN-3ky" secondAttribute="trailing" constant="20" id="gTx-zr-RwK"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="articleImageView" destination="kjK-ZE-5DP" id="M8x-sF-xkc"/>
-                        <outlet property="containerView" destination="bJ2-s6-LCy" id="LTR-Zp-Q9K"/>
                         <outlet property="detailTextView" destination="SUH-v1-sXB" id="XDb-y8-tRT"/>
-                        <outlet property="scrollView" destination="j8C-yN-3ky" id="Or2-XT-1wR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ze-Ae-vRU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

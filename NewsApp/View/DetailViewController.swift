@@ -7,11 +7,9 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, UIScrollViewDelegate {
+class DetailViewController: UIViewController {
     
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var articleImageView: UIImageView!
-    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var detailTextView: UITextView!
     
     var articleContent: String?
@@ -27,19 +25,12 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        scrollView.delegate = self
         navigationController?.navigationBar.prefersLargeTitles = true
         setConstraints()
         configureTextView()
         loadImage(with: imageURLString)
     }
    
-    
-    
-    
-    
-    
-    
     func configureTextView() {
         guard let articleContent, let articleURLString else {
             return
@@ -47,33 +38,12 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         detailTextView.delegate = self
         detailTextView.isEditable = false
         detailTextView.isUserInteractionEnabled = true
-        
-        
-        //Split the text into an array
-        var splitContentArray = articleContent.components(separatedBy: ".")
-             
-        // Make content an attributed string:
-        let attributedStringContent = NSMutableAttributedString(string: articleContent)
-        
-        //Create the range taht will display the link
-        let linkRange = (attributedStringContent.string as NSString).range(of: splitContentArray[splitContentArray.count - 1])
-        
-        //Assign the link to that range
-        let urlString = articleURLString
-        attributedStringContent.setAttributes([.link: urlString], range: linkRange)
-        
-        //Add the new attributed content to the textview
-        detailTextView.attributedText = attributedStringContent
-        
-        //Configure link font
+        detailTextView.attributedText = detailViewModel.prepareAttributedString(string: articleContent, urlString: articleURLString)
         detailTextView.font = UIFont.systemFont(ofSize: 17)
         self.detailTextView.linkTextAttributes = [
             .foregroundColor: UIColor.blue,
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ]
-        
-        //replace linkRange text with "Read more"
-        detailTextView.textStorage.replaceCharacters(in: linkRange, with: "Read more")
     }
     
     func loadImage(with string: String?) {
@@ -100,16 +70,15 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         detailTextView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            articleImageView.leadingAnchor.constraint(equalTo: containerView.layoutMarginsGuide.leadingAnchor, constant: 0),
-            articleImageView.trailingAnchor.constraint(equalTo: containerView.layoutMarginsGuide.trailingAnchor, constant: 0),
-            articleImageView.topAnchor.constraint(equalTo: containerView.layoutMarginsGuide.topAnchor, constant: 0),
-            articleImageView.bottomAnchor.constraint(equalTo: detailTextView.layoutMarginsGuide.topAnchor, constant: 0),
-            articleImageView.heightAnchor.constraint(equalToConstant: 250),
+            articleImageView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 0),
+            articleImageView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: 0),
+            articleImageView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: -20),
+            articleImageView.bottomAnchor.constraint(equalTo: detailTextView.layoutMarginsGuide.topAnchor, constant: 20),
+            articleImageView.heightAnchor.constraint(equalToConstant: 300),
             
-            detailTextView.leadingAnchor.constraint(equalTo: containerView.layoutMarginsGuide.leadingAnchor, constant: 0),
-            detailTextView.trailingAnchor.constraint(equalTo: containerView.layoutMarginsGuide.trailingAnchor, constant: 0),
-            detailTextView.bottomAnchor.constraint(equalTo: containerView.layoutMarginsGuide.bottomAnchor, constant: 0),
-            detailTextView.heightAnchor.constraint(equalToConstant: 500)
+            detailTextView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 0),
+            detailTextView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: 0),
+            detailTextView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: 0)
             
         ])
         
