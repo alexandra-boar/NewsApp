@@ -10,43 +10,7 @@ import UIKit
 
 class DetailViewModel {
     
-    var articleList: [Article]?
     let articleService = ArticleServiceAPI()
-    
-    func loadArticles(completion: @escaping (Error?) -> ()){
-        articleService.loadArticles { articles, error in
-            if let articles {
-                self.articleList = articles
-                completion(nil)
-            } else if let error {
-                completion(error)
-            }
-        }
-    }
-    
-    private func getArticle(index: Int) -> Article? {
-        if let list = articleList {
-            return list[index]
-        } else {
-            return nil
-        }
-    }
-    
-    func getArticleAuthor(index: Int) -> String? {
-        if let author = getArticle(index: index)?.author {
-            return (author)
-        } else {
-            return ("Unknown author")
-        }
-    }
-    
-    func getArticleContent(index: Int) -> String? {
-        if let content = getArticle(index: index)?.content {
-            return (content)
-        } else {
-            return ("Could not load content")
-        }
-    }
     
     func loadImage(urlString: String, completion: @escaping (UIImage?) -> ()) {
         articleService.loadArticleImage(urlString: urlString) { image in
@@ -58,5 +22,16 @@ class DetailViewModel {
         }
     }
     
-    
+    func prepareAttributedString(string: String, urlString: String) -> NSMutableAttributedString {
+        let splitContentArray = string.components(separatedBy: ".")
+        // Make content an attributed string:
+        let attributedStringContent = NSMutableAttributedString(string: string)
+        //Create the range taht will display the link
+        let linkRange = (attributedStringContent.string as NSString).range(of: splitContentArray[splitContentArray.count - 1])
+        //Assign the link to that range
+        attributedStringContent.setAttributes([.link: urlString], range: linkRange)
+        //replace linkRange text with "Read more"
+        attributedStringContent.replaceCharacters(in: linkRange, with: "Read more")
+        return attributedStringContent
+    }
 }

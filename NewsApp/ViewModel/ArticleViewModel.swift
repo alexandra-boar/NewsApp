@@ -58,7 +58,7 @@ class ArticleViewModel {
         if let content = getArticle(index: index)?.content {
             return (content)
         } else {
-            return ("Could not load content")
+            return ("Could not load content. Read More")
         }
         
     }
