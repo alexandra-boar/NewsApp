@@ -12,6 +12,7 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var checkmarkImage: UIImageView!
+    @IBOutlet weak var favoritesImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,6 +36,9 @@ class CustomTableViewCell: UITableViewCell {
         } else {
             self.checkmarkImage.image = UIImage(systemName: Constants.uncheckedImage)
         }
+        self.favoritesImage.image = UIImage(systemName: Constants.favoriteImage)
+        
+        
         
     }
 

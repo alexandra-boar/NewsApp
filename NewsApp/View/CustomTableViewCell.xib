@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,8 +16,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="423" height="116"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qwe-ll-mib">
-                        <rect key="frame" x="10" y="32.666666666666671" width="343" height="50.666666666666671"/>
+                    <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qwe-ll-mib" userLabel="Label Stack View">
+                        <rect key="frame" x="10" y="34.666666666666671" width="343" height="50.666666666666671"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VpJ-xC-dCg">
                                 <rect key="frame" x="0.0" y="0.0" width="343" height="20.333333333333332"/>
@@ -33,26 +33,40 @@
                             </label>
                         </subviews>
                     </stackView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ios-checkmark-circle-11" translatesAutoresizingMaskIntoConstraints="NO" id="fBS-29-Mxc">
-                        <rect key="frame" x="373" y="43" width="30" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="30" id="6Ww-Me-y9C"/>
-                            <constraint firstAttribute="height" constant="30" id="jc3-x7-NOI"/>
-                        </constraints>
-                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="8Tb-0j-y9t" userLabel="Image Stack View">
+                        <rect key="frame" x="373" y="20" width="30" height="80"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="W2h-Ji-uqx">
+                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Ahd-vR-gHQ"/>
+                                    <constraint firstAttribute="width" constant="30" id="Z6y-dW-PYq"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ios-checkmark-circle-11" translatesAutoresizingMaskIntoConstraints="NO" id="fBS-29-Mxc">
+                                <rect key="frame" x="0.0" y="50" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="6Ww-Me-y9C"/>
+                                    <constraint firstAttribute="height" constant="30" id="jc3-x7-NOI"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                    </stackView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="qwe-ll-mib" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="8ek-i2-aBd"/>
-                    <constraint firstItem="fBS-29-Mxc" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Jpc-RK-YOv"/>
-                    <constraint firstItem="qwe-ll-mib" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Tky-kH-uaP"/>
-                    <constraint firstAttribute="trailing" secondItem="fBS-29-Mxc" secondAttribute="trailing" constant="20" id="a03-49-Aeo"/>
-                    <constraint firstItem="fBS-29-Mxc" firstAttribute="leading" secondItem="qwe-ll-mib" secondAttribute="trailing" constant="20" id="xn5-tX-cS6"/>
+                    <constraint firstItem="8Tb-0j-y9t" firstAttribute="leading" secondItem="qwe-ll-mib" secondAttribute="trailing" constant="20" id="Gtg-EV-nIC"/>
+                    <constraint firstAttribute="bottom" secondItem="8Tb-0j-y9t" secondAttribute="bottom" constant="20" id="Pec-hW-mLx"/>
+                    <constraint firstAttribute="trailing" secondItem="8Tb-0j-y9t" secondAttribute="trailing" constant="20" id="SZK-YV-v4q"/>
+                    <constraint firstItem="qwe-ll-mib" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="cGQ-BM-y4G"/>
+                    <constraint firstItem="8Tb-0j-y9t" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="tUv-17-pQe"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="authorLabel" destination="b36-CF-l4b" id="jYW-tP-m5b"/>
                 <outlet property="checkmarkImage" destination="fBS-29-Mxc" id="O9l-fL-Wy3"/>
+                <outlet property="favoritesImage" destination="W2h-Ji-uqx" id="J6N-Y6-sIh"/>
                 <outlet property="titleLabel" destination="VpJ-xC-dCg" id="O8e-ph-3kw"/>
             </connections>
             <point key="canvasLocation" x="208.3969465648855" y="12.67605633802817"/>

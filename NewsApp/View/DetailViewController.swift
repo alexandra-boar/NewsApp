@@ -96,7 +96,3 @@ extension DetailViewController: UITextViewDelegate {
         return false
     }
 }
-
-
-
-

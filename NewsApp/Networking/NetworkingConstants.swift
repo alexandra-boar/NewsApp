@@ -12,10 +12,16 @@ struct Constants {
     
     static let detailViewIdentifier = "Detail"
     
-    static let customCellIdentifier = "CustomTableViewCell"
+    static let customTableViewCellIdentifier = "CustomTableViewCell"
     
     static let checkedImage = "checkmark.circle.fill"
     
     static let uncheckedImage = "checkmark.circle"
+    
+    static let favoriteImage = "star.fill"
+    
+    static let unfavoriteImage = "star"
+    
+    static let customCollectionViewCellIdentifier = "FavoritesCollectionViewCell"
 
 }
