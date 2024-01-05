@@ -13,6 +13,7 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var flipButton: UIButton!
+    @IBOutlet weak var gradientView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,7 +21,10 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
     }
     
     func configureCell() {
+        favoriteArticleImageView.clipsToBounds = true
+        favoriteArticleImageView.contentMode = .scaleAspectFill
         favoriteArticleImageView.image = UIImage(named: "defaultImage")
+        favoriteArticleImageView.autoresizingMask  = [.flexibleTopMargin, .flexibleHeight, .flexibleRightMargin, .flexibleLeftMargin, .flexibleTopMargin, .flexibleWidth]
         titleLabel.text = "Title"
         titleLabel.font = UIFont.boldSystemFont(ofSize: 24)
         titleLabel.textColor = UIColor.white
@@ -32,12 +36,12 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
         contentLabel.lineBreakMode = .byWordWrapping
         contentLabel.font = UIFont.systemFont(ofSize: 17)
         contentLabel.textColor = UIColor.white
-        self.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.8)
+        self.backgroundColor = UIColor.systemBlue
         self.layer.cornerRadius = 10.0
         flipButton.setTitle("Flip to read", for: .normal)
         flipButton.setTitleColor(.white, for: .normal)
-        flipButton.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.1)
-        flipButton.layer.cornerRadius = 10.0
+        flipButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
+        flipButton.layer.cornerRadius = 15.0
     }
 
 }

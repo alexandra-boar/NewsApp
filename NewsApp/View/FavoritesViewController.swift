@@ -12,18 +12,21 @@ import UIKit
 class FavoritesViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
+        
     let myCollectionViewLayout: UICollectionViewFlowLayout = FavoritesCarouselFlowLayout()
     
     override func viewDidLoad() {
+        let screenWidth = UIScreen.main.bounds.width
+        let contentInset = (Double(screenWidth) + Constants.favoritesCellWidth)/2
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib.init(nibName: Constants.customCollectionViewCellIdentifier, bundle: nil), forCellWithReuseIdentifier: Constants.customCollectionViewCellIdentifier)
         collectionView.collectionViewLayout = myCollectionViewLayout
         collectionView.decelerationRate = .fast
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 25, bottom: 0, right: 5)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: contentInset, bottom: 0, right: contentInset)
+        
     }
-    
 }
 
 extension FavoritesViewController: UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
