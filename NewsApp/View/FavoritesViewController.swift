@@ -21,7 +21,7 @@ class FavoritesViewController: UIViewController {
         
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(UINib.init(nibName: Constants.customCollectionViewCellIdentifier, bundle: nil), forCellWithReuseIdentifier: Constants.customCollectionViewCellIdentifier)
+        collectionView.register(UINib.init(nibName: Constants.favoritesCollectionViewCellIdentifier, bundle: nil), forCellWithReuseIdentifier: Constants.favoritesCollectionViewCellIdentifier)
         collectionView.collectionViewLayout = myCollectionViewLayout
         collectionView.decelerationRate = .fast
         collectionView.contentInset = UIEdgeInsets(top: 0, left: contentInset, bottom: 0, right: contentInset)
@@ -49,5 +49,3 @@ extension FavoritesViewController: UIScrollViewDelegate, UICollectionViewDelegat
         return 10;
     }
 }
-
-

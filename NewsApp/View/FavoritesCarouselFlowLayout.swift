@@ -21,7 +21,6 @@ class FavoritesCarouselFlowLayout: UICollectionViewFlowLayout {
     }
     
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
-        guard UIDevice.current.userInterfaceIdiom != .pad else { return proposedContentOffset }
         guard let collectionView = collectionView else { return proposedContentOffset }
         
         let targetRect = CGRect(x: proposedContentOffset.x, y: 0, width: collectionView.frame.width, height: collectionView.frame.height)

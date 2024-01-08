@@ -12,7 +12,7 @@ struct Constants {
     
     static let detailViewIdentifier = "Detail"
     
-    static let customTableViewCellIdentifier = "CustomTableViewCell"
+    static let newsTableCellIdentifier = "CustomTableViewCell"
     
     static let checkedImage = "checkmark.circle.fill"
     
@@ -22,7 +22,7 @@ struct Constants {
     
     static let unfavoriteImage = "star"
     
-    static let customCollectionViewCellIdentifier = "FavoritesCollectionViewCell"
+    static let favoritesCollectionViewCellIdentifier = "FavoritesCollectionViewCell"
     
     static let favoritesCellWidth = 300.0
     static let favoritesCellHeight = 380.0

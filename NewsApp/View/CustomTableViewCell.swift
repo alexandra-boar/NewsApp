@@ -35,9 +35,5 @@ class CustomTableViewCell: UITableViewCell {
         } else {
             self.checkmarkImage.image = UIImage(systemName: Constants.uncheckedImage)
         }
-        
-        
     }
-
-    
 }

@@ -19,7 +19,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UINib.init(nibName: Constants.customTableViewCellIdentifier, bundle: nil), forCellReuseIdentifier: Constants.customTableViewCellIdentifier)
+        tableView.register(UINib.init(nibName: Constants.newsTableCellIdentifier, bundle: nil), forCellReuseIdentifier: Constants.newsTableCellIdentifier)
         
         articleViewModel.loadArticles { error in
             if let error {
@@ -43,7 +43,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.customTableViewCellIdentifier, for: indexPath) as! CustomTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.newsTableCellIdentifier, for: indexPath) as! CustomTableViewCell
         cell.configureCell(viewModel: articleViewModel, indexPath: indexPath)
         return cell
     }

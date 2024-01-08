@@ -18,31 +18,39 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         configureCell()
+        configureFavoriteArticleImageView()
+        configureContentLabel()
     }
     
     func configureCell() {
-        favoriteArticleImageView.clipsToBounds = true
-        favoriteArticleImageView.contentMode = .scaleAspectFill
-        favoriteArticleImageView.layer.masksToBounds = true
-        favoriteArticleImageView.image = UIImage(named: "defaultImage")
-        favoriteArticleImageView.autoresizingMask  = [.flexibleTopMargin, .flexibleHeight, .flexibleRightMargin, .flexibleLeftMargin, .flexibleTopMargin, .flexibleWidth]
         titleLabel.text = "Title"
         titleLabel.font = UIFont.boldSystemFont(ofSize: 24)
         titleLabel.textColor = UIColor.white
         authorLabel.text = "Author"
         authorLabel.font = UIFont.boldSystemFont(ofSize: 18)
         authorLabel.textColor = UIColor.white
-        contentLabel.text = "Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum"
-        contentLabel.numberOfLines = 0
-        contentLabel.lineBreakMode = .byWordWrapping
-        contentLabel.font = UIFont.systemFont(ofSize: 17)
-        contentLabel.textColor = UIColor.white
         self.backgroundColor = UIColor.systemBlue
         self.layer.cornerRadius = 10.0
         flipButton.setTitle("Flip to read", for: .normal)
         flipButton.setTitleColor(.white, for: .normal)
         flipButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
         flipButton.layer.cornerRadius = 15.0
+    }
+    
+    func configureFavoriteArticleImageView() {
+        favoriteArticleImageView.clipsToBounds = true
+        favoriteArticleImageView.contentMode = .scaleAspectFill
+        favoriteArticleImageView.layer.masksToBounds = true
+        favoriteArticleImageView.image = UIImage(named: "defaultImage")
+        favoriteArticleImageView.autoresizingMask  = [.flexibleTopMargin, .flexibleHeight, .flexibleRightMargin, .flexibleLeftMargin, .flexibleTopMargin, .flexibleWidth]
+    }
+    
+    func configureContentLabel() {
+        contentLabel.text = "Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum"
+        contentLabel.numberOfLines = 0
+        contentLabel.lineBreakMode = .byWordWrapping
+        contentLabel.font = UIFont.systemFont(ofSize: 17)
+        contentLabel.textColor = UIColor.white
     }
 
 }
