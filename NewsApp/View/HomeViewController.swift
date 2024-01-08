@@ -9,7 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    @IBOutlet weak var articlesTable: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     
     var articleViewModel = ArticleViewModel()
     
@@ -17,21 +17,21 @@ class HomeViewController: UIViewController {
  
     override func viewDidLoad() {
         super.viewDidLoad()
-        articlesTable.delegate = self
-        articlesTable.dataSource = self
-        articlesTable.register(UINib.init(nibName: Constants.customCellIdentifier, bundle: nil), forCellReuseIdentifier: Constants.customCellIdentifier)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UINib.init(nibName: Constants.newsTableCellIdentifier, bundle: nil), forCellReuseIdentifier: Constants.newsTableCellIdentifier)
         
         articleViewModel.loadArticles { error in
             if let error {
                 print(error)
             } else {
                 DispatchQueue.main.async {
-                    self.articlesTable.reloadData()
+                    self.tableView.reloadData()
                 }
             }
         }
         
-        self.title = "News"
+        self.parent?.title = "News"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
 }
@@ -43,7 +43,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.customCellIdentifier, for: indexPath) as! CustomTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.newsTableCellIdentifier, for: indexPath) as! CustomTableViewCell
         cell.configureCell(viewModel: articleViewModel, indexPath: indexPath)
         return cell
     }
