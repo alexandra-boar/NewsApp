@@ -31,7 +31,7 @@ class GradientView: UIView {
             baseColor.withAlphaComponent(1),
         ].map{$0.cgColor}
         gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.3)
-        gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.48)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.45)
         layer.addSublayer(gradientLayer)
         self.backgroundColor = UIColor.clear
 

@@ -23,6 +23,7 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
     func configureCell() {
         favoriteArticleImageView.clipsToBounds = true
         favoriteArticleImageView.contentMode = .scaleAspectFill
+        favoriteArticleImageView.layer.masksToBounds = true
         favoriteArticleImageView.image = UIImage(named: "defaultImage")
         favoriteArticleImageView.autoresizingMask  = [.flexibleTopMargin, .flexibleHeight, .flexibleRightMargin, .flexibleLeftMargin, .flexibleTopMargin, .flexibleWidth]
         titleLabel.text = "Title"
