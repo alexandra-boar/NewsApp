@@ -16,7 +16,6 @@ struct ArticleResponseModel: Codable {
 struct Article: Codable {
     let author: String?
     let title: String?
-    let description: String?
     let content: String?
     let url: String?
     let urlToImage: String?

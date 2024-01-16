@@ -41,7 +41,7 @@ extension FavoritesViewController: UIScrollViewDelegate, UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoritesCollectionViewCell", for: indexPath) as! FavoritesCollectionViewCell
-        cell.favoriteArticleImageView.contentMode = .scaleAspectFit
+        cell.favoriteArticleImageView.contentMode = .scaleAspectFill
         return cell
     }
 
