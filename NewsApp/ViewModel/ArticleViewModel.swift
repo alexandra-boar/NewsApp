@@ -24,7 +24,7 @@ class ArticleViewModel {
         }
     }
     
-    private func getArticle(index: Int) -> Article? {
+    func getArticle(index: Int) -> Article? {
         if let list = articleList {
             return list[index]
         } else {
@@ -37,14 +37,26 @@ class ArticleViewModel {
         return articleList?.count ?? 0
     }
     
+    func toggleFavoriteForArticle(index: Int) {
+        articleList?[index].isFavorite.toggle()
+    }
+    
     func getArticleTitle(index: Int) -> String? {
         if let title = getArticle(index: index)?.title {
             return (title)
         } else {
             return (nil)
         }
-        
     }
+        
+    func isArticleFavorite(index: Int) -> Bool {
+        if let isFavorite = getArticle(index: index)?.isFavorite {
+            return isFavorite
+        } else {
+            return false
+        }
+    }
+
     
     func getArticleAuthor(index: Int) -> String? {
         if let author = getArticle(index: index)?.author {

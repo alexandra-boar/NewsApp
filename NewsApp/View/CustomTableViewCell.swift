@@ -14,6 +14,9 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var checkmarkImage: UIImageView!
     @IBOutlet weak var favoritesButton: UIButton!
     
+    var index: Int?
+    var viewModel: ArticleViewModel?
+    
     var isFavorite: Bool = false {
         didSet {
             let favoriteImage = isFavorite ? UIImage(systemName: Constants.favoriteImage) : UIImage(systemName: Constants.unfavoriteImage)
@@ -27,34 +30,22 @@ class CustomTableViewCell: UITableViewCell {
         titleLabel.font = UIFont.boldSystemFont(ofSize: 15.0)
         authorLabel.font = UIFont.systemFont(ofSize: 15.0)
     }
-    
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//        if isFavorite == true {
-//            favoritesButton.setImage(UIImage(systemName: Constants.favoriteImage), for: .normal)
-//        } else if isFavorite == false {
-//            favoritesButton.setImage(UIImage(systemName: Constants.unfavoriteImage), for: .normal)
-//        }
-//    }
 
     @IBAction func addToFavorites(_ sender: UIButton) {
-        
+        guard let viewModel  = viewModel, let index = index else {return}
+        viewModel.toggleFavoriteForArticle(index: index)
         isFavorite.toggle()
-        
-//        if isFavorite == false {
-//            sender.setImage(UIImage(systemName: Constants.favoriteImage), for: .normal)
-//            isFavorite = true
-//        } else if isFavorite == true {
-//            sender.setImage(UIImage(systemName: Constants.unfavoriteImage), for: .normal)
-//            isFavorite = false
-//        }
     }
     
-    func configureCell(viewModel: ArticleViewModel, indexPath: IndexPath) {
+    func configureCell(viewModel: ArticleViewModel, indexPath: Int) {
         
-        let title = viewModel.getArticleTitle(index: indexPath.row)
-        let author = viewModel.getArticleAuthor(index: indexPath.row)
-        let urlKey = viewModel.getArticleUrl(index: indexPath.row)
+        self.viewModel = viewModel
+        self.index = indexPath
+        self.isFavorite = viewModel.isArticleFavorite(index: indexPath)
+        
+        let title = viewModel.getArticleTitle(index: indexPath)
+        let author = viewModel.getArticleAuthor(index: indexPath)
+        let urlKey = viewModel.getArticleUrl(index: indexPath)
         let defaults = UserDefaults()
         
         self.titleLabel.text = title
@@ -65,11 +56,5 @@ class CustomTableViewCell: UITableViewCell {
         } else {
             self.checkmarkImage.image = UIImage(systemName: Constants.uncheckedImage)
         }
-        
-        if isFavorite == true {
-            favoritesButton.setImage(UIImage(systemName: Constants.favoriteImage), for: .normal)
-        } else if isFavorite == false {
-            favoritesButton.setImage(UIImage(systemName: Constants.unfavoriteImage), for: .normal)
-        }
-        }
+    }
 }

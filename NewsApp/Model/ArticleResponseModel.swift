@@ -19,4 +19,13 @@ struct Article: Codable {
     let content: String?
     let url: String?
     let urlToImage: String?
+    var isFavorite: Bool = false
+    
+    enum CodingKeys: CodingKey {
+        case author
+        case title
+        case content
+        case url
+        case urlToImage
+    }
 }

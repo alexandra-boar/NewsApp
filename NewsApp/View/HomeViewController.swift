@@ -14,7 +14,7 @@ class HomeViewController: UIViewController {
     var articleViewModel = ArticleViewModel()
     
     let defaults = UserDefaults()
- 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -44,7 +44,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.newsTableCellIdentifier, for: indexPath) as! CustomTableViewCell
-        cell.configureCell(viewModel: articleViewModel, indexPath: indexPath)
+        cell.configureCell(viewModel: articleViewModel, indexPath: indexPath.row)
         return cell
     }
     
@@ -66,7 +66,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         cell.checkmarkImage.image = UIImage(systemName: Constants.checkedImage)
         
         if let vc = storyboard?.instantiateViewController(withIdentifier: Constants.detailViewIdentifier) as? DetailViewController {
-    
+            
             vc.articleContent = articleViewModel.getArticleContent(index: indexPath.row)
             vc.articleAuthor = articleViewModel.getArticleAuthor(index: indexPath.row)
             vc.articleURLString = articleViewModel.getArticleUrl(index: indexPath.row)
@@ -74,7 +74,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             vc.imageURLString = imageURL
             self.navigationController?.pushViewController(vc, animated: true)
         }
-            
+        
     }
 }
 
