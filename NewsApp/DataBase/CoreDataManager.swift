@@ -30,6 +30,8 @@ class CoreDataManager {
         articleEntity.content = article.content
         articleEntity.url = article.url
         articleEntity.urlToImage = article.urlToImage
+        articleEntity.articleDescription = article.description
+        saveContext()
     }
     
     private func getArticleEntities() -> [NSManagedObject] {
@@ -41,12 +43,13 @@ class CoreDataManager {
         }
     }
     
-    func getFavoriteArticles() -> [Article] {
+    func getArticles() -> [Article] {
         let managedObjects = getArticleEntities()
         let articles = managedObjects.map { managedObject in
             Article(
                 author: managedObject.value(forKey: "author") as? String,
-                title: managedObject.value(forKey: "title") as? String,
+                title: managedObject.value(forKey: "title") as? String, 
+                description: managedObject.value(forKey: "articleDescription") as? String,
                 content: managedObject.value(forKey: "content") as? String,
                 url: managedObject.value(forKey: "url") as? String,
                 urlToImage: managedObject.value(forKey: "urlToImage") as? String

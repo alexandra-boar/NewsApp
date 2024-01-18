@@ -11,7 +11,7 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var favoriteArticleImageView: UIImageView!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var flipButton: UIButton!
     @IBOutlet weak var gradientView: UIView!
     
@@ -19,7 +19,7 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         configureCell()
         configureFavoriteArticleImageView()
-        configureContentLabel()
+        configureDescriptionLabel()
     }
     
     func configureCell() {
@@ -45,12 +45,12 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
         favoriteArticleImageView.autoresizingMask  = [.flexibleTopMargin, .flexibleHeight, .flexibleRightMargin, .flexibleLeftMargin, .flexibleTopMargin, .flexibleWidth]
     }
     
-    func configureContentLabel() {
-        contentLabel.text = "Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum"
-        contentLabel.numberOfLines = 0
-        contentLabel.lineBreakMode = .byWordWrapping
-        contentLabel.font = UIFont.systemFont(ofSize: 17)
-        contentLabel.textColor = UIColor.white
+    func configureDescriptionLabel() {
+        descriptionLabel.text = "Description"
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.lineBreakMode = .byWordWrapping
+        descriptionLabel.font = UIFont.systemFont(ofSize: 17)
+        descriptionLabel.textColor = UIColor.white
     }
 
 }

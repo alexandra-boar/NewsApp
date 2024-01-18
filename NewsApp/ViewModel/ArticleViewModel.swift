@@ -12,11 +12,24 @@ class ArticleViewModel {
     var articleList: [Article]?
     let articleService = ArticleServiceAPI()
     let defaults = UserDefaults.standard
+    let coreDataManager = CoreDataManager.shared
+    
     
     func loadArticles(completion: @escaping (Error?) -> ()) {
+        let managedArticles = coreDataManager.getArticles()
+        
         articleService.loadArticles { articles, error in
             if let articles {
                 self.articleList = articles
+//                //check if article is in the database
+                for index in articles.indices {
+                    for managedArticle in managedArticles {
+                        if managedArticle.url == articles[index].url {
+                            print("Found match between article \(articles[index])\n and \nmanagedArticle \(managedArticles)")
+                            self.toggleFavoriteForArticle(index: index)
+                        }
+                    }
+                }
                 completion(nil)
             } else if let error {
                 completion(error)
@@ -72,7 +85,14 @@ class ArticleViewModel {
         } else {
             return ("Could not load content. Read More")
         }
-        
+    }
+    
+    func getArticleDescription(index: Int) -> String? {
+        if let description = getArticle(index: index)?.description {
+            return (description)
+        } else {
+            return ("Could not load content.")
+        }
     }
     
     func getArticleUrl(index: Int) -> String? {

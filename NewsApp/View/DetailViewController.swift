@@ -12,7 +12,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var articleImageView: UIImageView!
     @IBOutlet weak var detailTextView: UITextView!
     
-    var articleContent: String?
+    var articleDescription: String?
     var articleAuthor: String? {
         didSet {
             title = articleAuthor
@@ -32,13 +32,13 @@ class DetailViewController: UIViewController {
     }
    
     func configureTextView() {
-        guard let articleContent, let articleURLString else {
+        guard let articleDescription, let articleURLString else {
             return
         }
         detailTextView.delegate = self
         detailTextView.isEditable = false
         detailTextView.isUserInteractionEnabled = true
-        detailTextView.attributedText = detailViewModel.prepareAttributedString(string: articleContent, urlString: articleURLString)
+        detailTextView.attributedText = detailViewModel.prepareAttributedString(string: articleDescription, urlString: articleURLString)
         detailTextView.font = UIFont.systemFont(ofSize: 17)
         self.detailTextView.linkTextAttributes = [
             .foregroundColor: UIColor.blue,

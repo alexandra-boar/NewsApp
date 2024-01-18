@@ -67,7 +67,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let vc = storyboard?.instantiateViewController(withIdentifier: Constants.detailViewIdentifier) as? DetailViewController {
             
-            vc.articleContent = articleViewModel.getArticleContent(index: indexPath.row)
+            vc.articleDescription = articleViewModel.getArticleDescription(index: indexPath.row)
             vc.articleAuthor = articleViewModel.getArticleAuthor(index: indexPath.row)
             vc.articleURLString = articleViewModel.getArticleUrl(index: indexPath.row)
             let imageURL = articleViewModel.getImageUrl(index: indexPath.row)

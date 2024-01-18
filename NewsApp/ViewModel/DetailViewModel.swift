@@ -23,15 +23,21 @@ class DetailViewModel {
     }
     
     func prepareAttributedString(string: String, urlString: String) -> NSMutableAttributedString {
-        let splitContentArray = string.components(separatedBy: ".")
-        // Make content an attributed string:
-        let attributedStringContent = NSMutableAttributedString(string: string)
-        //Create the range taht will display the link
-        let linkRange = (attributedStringContent.string as NSString).range(of: splitContentArray[splitContentArray.count - 1])
+        //Split description into an array of sentences
+        var splitDescriptionArray = string.components(separatedBy: ".")
+        //append the element "Read more" to the array
+        splitDescriptionArray.append("Read more")
+        //append to string "Read more" to the description
+        var appendedString = string
+        appendedString.append("Read more")
+        // Make description an attributed string:
+        let attributedStringDescription = NSMutableAttributedString(string: appendedString)
+        //Create the range that will display the link
+        let linkRange = (attributedStringDescription.string as NSString).range(of: splitDescriptionArray[splitDescriptionArray.count - 1])
         //Assign the link to that range
-        attributedStringContent.setAttributes([.link: urlString], range: linkRange)
+        attributedStringDescription.setAttributes([.link: urlString], range: linkRange)
         //replace linkRange text with "Read more"
-        attributedStringContent.replaceCharacters(in: linkRange, with: "Read more")
-        return attributedStringContent
+        attributedStringDescription.replaceCharacters(in: linkRange, with: "Read more")
+        return attributedStringDescription
     }
 }

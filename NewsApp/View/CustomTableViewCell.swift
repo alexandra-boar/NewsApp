@@ -16,6 +16,8 @@ class CustomTableViewCell: UITableViewCell {
     
     var index: Int?
     var viewModel: ArticleViewModel?
+    var favoritesViewModel: FavoriteArticlesViewModel?
+    var coreDataService = CoreDataManager.shared
     
     var isFavorite: Bool = false {
         didSet {
@@ -35,7 +37,9 @@ class CustomTableViewCell: UITableViewCell {
         guard let viewModel  = viewModel, let index = index else {return}
         viewModel.toggleFavoriteForArticle(index: index)
         isFavorite.toggle()
-    }
+       // add article to core data
+        guard let article = viewModel.getArticle(index: index) else {return}
+        coreDataService.addArticle(article: article)   }
     
     func configureCell(viewModel: ArticleViewModel, indexPath: Int) {
         

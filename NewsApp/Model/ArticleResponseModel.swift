@@ -16,6 +16,7 @@ struct ArticleResponseModel: Codable {
 struct Article: Codable {
     let author: String?
     let title: String?
+    let description: String?
     let content: String?
     let url: String?
     let urlToImage: String?
@@ -24,6 +25,7 @@ struct Article: Codable {
     enum CodingKeys: CodingKey {
         case author
         case title
+        case description
         case content
         case url
         case urlToImage
