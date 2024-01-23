@@ -32,14 +32,17 @@ class CustomTableViewCell: UITableViewCell {
         titleLabel.font = UIFont.boldSystemFont(ofSize: 15.0)
         authorLabel.font = UIFont.systemFont(ofSize: 15.0)
     }
-
+    
     @IBAction func addToFavorites(_ sender: UIButton) {
-        guard let viewModel  = viewModel, let index = index else {return}
+        guard let viewModel = viewModel, let index = index else { return }
+        
         viewModel.toggleFavoriteForArticle(index: index)
         isFavorite.toggle()
-       // add article to core data
+        
+        // add article to core data
         guard let article = viewModel.getArticle(index: index) else {return}
-        coreDataService.addArticle(article: article)   }
+        coreDataService.addArticle(article: article)
+    }
     
     func configureCell(viewModel: ArticleViewModel, indexPath: Int) {
         
@@ -55,7 +58,8 @@ class CustomTableViewCell: UITableViewCell {
         self.titleLabel.text = title
         self.authorLabel.text = author
         
-        if defaults.bool(forKey: urlKey!) == true {
+        
+        if let urlKey = urlKey, defaults.bool(forKey: urlKey) == true {
             self.checkmarkImage.image = UIImage(systemName: Constants.checkedImage)
         } else {
             self.checkmarkImage.image = UIImage(systemName: Constants.uncheckedImage)

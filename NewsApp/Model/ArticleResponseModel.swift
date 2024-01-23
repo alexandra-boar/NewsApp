@@ -5,7 +5,7 @@
 //  Created by Alexandra Boar on 29.11.2023.
 //
 
-import Foundation
+import UIKit
 
 struct ArticleResponseModel: Codable {
     let status: String?
@@ -21,6 +21,7 @@ struct Article: Codable {
     let url: String?
     let urlToImage: String?
     var isFavorite: Bool = false
+    var image: UIImage? = nil
     
     enum CodingKeys: CodingKey {
         case author

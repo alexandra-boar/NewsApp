@@ -24,13 +24,20 @@ class CoreDataManager {
     static let shared = CoreDataManager()
     
     func addArticle(article: Article) {
+        // article -> core data entity
+        
+        // create core data entity
         let articleEntity = ArticleEntity(context: persistentContainer.viewContext)
+        
+        // set core data entity details
         articleEntity.title = article.title
         articleEntity.author = article.author
         articleEntity.content = article.content
         articleEntity.url = article.url
         articleEntity.urlToImage = article.urlToImage
         articleEntity.articleDescription = article.description
+        
+        // save new entity
         saveContext()
     }
     
@@ -56,6 +63,24 @@ class CoreDataManager {
             )
         }
         return articles
+    }
+    
+    func getArticleEntity(with url: String) -> ArticleEntity? {
+        let request = NSFetchRequest<ArticleEntity>(entityName: "ArticleEntity")
+        request.predicate = NSPredicate(format: "url = %@", url) // check for string
+        do {
+            return try persistentContainer.viewContext.fetch(request).first
+        } catch let error {
+            print("Failed with \(error)")
+            return nil
+        }
+    }
+    
+    
+    func saveImage(for articleURL: String, with imageData: Data) {
+        let articleEntity = ArticleEntity(context: persistentContainer.viewContext)
+        articleEntity.image = imageData
+        saveContext()
     }
     
     func saveContext () {

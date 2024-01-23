@@ -62,6 +62,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         UserDefaults.standard.setValue(cell.isSelected, forKey: urlKey)
         
         print("Article URL: \(articleViewModel.getArticleUrl(index: indexPath.row) ?? "Can't find Article URL")" )
+        let articleURL = articleViewModel.getArticleUrl(index: indexPath.row)
         
         cell.checkmarkImage.image = UIImage(systemName: Constants.checkedImage)
         
@@ -74,6 +75,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             vc.imageURLString = imageURL
             self.navigationController?.pushViewController(vc, animated: true)
         }
+        
+        guard let articleURL = articleURL else { return }
+        CoreDataManager.shared.getArticleEntity(with: articleURL)
         
     }
 }

@@ -52,5 +52,4 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
         descriptionLabel.font = UIFont.systemFont(ofSize: 17)
         descriptionLabel.textColor = UIColor.white
     }
-
 }

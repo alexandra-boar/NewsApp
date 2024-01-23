@@ -47,17 +47,42 @@ extension FavoritesViewController: UIScrollViewDelegate, UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoritesCollectionViewCell", for: indexPath) as! FavoritesCollectionViewCell
+        
         cell.favoriteArticleImageView.contentMode = .scaleAspectFill
+        
         let article = favoritesViewModel.articles![indexPath.row]
         cell.titleLabel.text = article.title
         cell.authorLabel.text = article.author
         cell.descriptionLabel.text = article.description
+        let imageURL = article.urlToImage
+        
+        func loadImage(with string: String?) {
+            guard let string else {
+                cell.favoriteArticleImageView.image = UIImage(named: "defaultImage")
+                return
+            }
+            
+            // get image from core data
+            
+            favoritesViewModel.downloadImage(urlString: string) { image in
+                if let image {
+                    DispatchQueue.main.async {
+                        cell.favoriteArticleImageView.image = image
+                    }
+                } else {
+                    cell.favoriteArticleImageView.image = UIImage(named: "defaultImage")
+                }
+            }
+        }
+        loadImage(with: imageURL)
         return cell
+        
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10;
+        return 10
     }
+    
 }
 
 extension FavoritesViewController: FavoriteArticlesViewModelDelegate {

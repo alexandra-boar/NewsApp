@@ -23,6 +23,10 @@
                             <constraint firstAttribute="height" constant="169" id="fT3-5T-Enk"/>
                         </constraints>
                     </imageView>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="jss-Pf-74R">
+                        <rect key="frame" x="315" y="507" width="20" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </activityIndicatorView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mqp-fh-ymh" customClass="GradientView" customModule="NewsApp" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="651" height="1034"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
