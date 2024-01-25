@@ -23,7 +23,7 @@ class CoreDataManager {
     
     static let shared = CoreDataManager()
     
-    func addArticle(article: Article) {
+    func addArticle(article: Article, imageData: Data) {
         // article -> core data entity
         
         // create core data entity
@@ -36,7 +36,7 @@ class CoreDataManager {
         articleEntity.url = article.url
         articleEntity.urlToImage = article.urlToImage
         articleEntity.articleDescription = article.description
-        
+        articleEntity.image = imageData
         // save new entity
         saveContext()
     }

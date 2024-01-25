@@ -5,7 +5,7 @@
 //  Created by Alexandra Boar on 29.11.2023.
 //
 
-import Foundation
+import UIKit
 
 class ArticleViewModel {
     
@@ -113,4 +113,16 @@ class ArticleViewModel {
                 return nil
             }
         }
+    
+    func downloadImage(urlString: String, completion: @escaping (Data?) -> ()) {
+        articleService.loadArticleImage(urlString: urlString) { image in
+            if let image, let imageData = image.pngData() {
+                completion(imageData)
+            } else {
+                print("Couldn't load image in ArticlesViewModel")
+            }
+        }
+    }
+        
+    
 }

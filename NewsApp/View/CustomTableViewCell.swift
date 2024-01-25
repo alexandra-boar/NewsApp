@@ -16,7 +16,6 @@ class CustomTableViewCell: UITableViewCell {
     
     var index: Int?
     var viewModel: ArticleViewModel?
-    var favoritesViewModel: FavoriteArticlesViewModel?
     var coreDataService = CoreDataManager.shared
     
     var isFavorite: Bool = false {
@@ -35,14 +34,29 @@ class CustomTableViewCell: UITableViewCell {
     
     @IBAction func addToFavorites(_ sender: UIButton) {
         guard let viewModel = viewModel, let index = index else { return }
-        
         viewModel.toggleFavoriteForArticle(index: index)
         isFavorite.toggle()
         
-        // add article to core data
         guard let article = viewModel.getArticle(index: index) else {return}
-        coreDataService.addArticle(article: article)
+        
+        func loadImage(with string: String?) {
+            guard let string else {
+                let defaultImage = UIImage(named: "defaultImage")
+                let defaultImageData = defaultImage!.pngData()
+                self.coreDataService.addArticle(article: article, imageData: defaultImageData!)
+                return
+            }
+            viewModel.downloadImage(urlString: string) { image in
+                if let image {
+                    self.coreDataService.addArticle(article: article, imageData: image)
+                }
+            }
+        }
+        
+        loadImage(with: article.urlToImage)
+        
     }
+    
     
     func configureCell(viewModel: ArticleViewModel, indexPath: Int) {
         

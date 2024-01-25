@@ -54,27 +54,16 @@ extension FavoritesViewController: UIScrollViewDelegate, UICollectionViewDelegat
         cell.titleLabel.text = article.title
         cell.authorLabel.text = article.author
         cell.descriptionLabel.text = article.description
-        let imageURL = article.urlToImage
+        let articleURL = article.url
         
-        func loadImage(with string: String?) {
-            guard let string else {
-                cell.favoriteArticleImageView.image = UIImage(named: "defaultImage")
-                return
-            }
-            
-            // get image from core data
-            
-            favoritesViewModel.downloadImage(urlString: string) { image in
-                if let image {
-                    DispatchQueue.main.async {
-                        cell.favoriteArticleImageView.image = image
-                    }
-                } else {
-                    cell.favoriteArticleImageView.image = UIImage(named: "defaultImage")
-                }
-            }
+        let articleEntity = CoreDataManager.shared.getArticleEntity(with: articleURL!)
+        
+        if let articleImage = UIImage(data: (articleEntity?.image)!) {
+            cell.favoriteArticleImageView.image = articleImage }
+        else {
+            cell.favoriteArticleImageView.image = UIImage(named: "defaultImage")
         }
-        loadImage(with: imageURL)
+        
         return cell
         
     }

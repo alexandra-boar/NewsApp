@@ -75,10 +75,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             vc.imageURLString = imageURL
             self.navigationController?.pushViewController(vc, animated: true)
         }
-        
-        guard let articleURL = articleURL else { return }
-        CoreDataManager.shared.getArticleEntity(with: articleURL)
-        
     }
 }
 
