@@ -51,13 +51,15 @@ extension FavoritesViewController: UIScrollViewDelegate, UICollectionViewDelegat
         cell.favoriteArticleImageView.contentMode = .scaleAspectFill
         
         let article = favoritesViewModel.articles![indexPath.row]
-        cell.titleLabel.text = article.title
-        cell.authorLabel.text = article.author
-        cell.descriptionLabel.text = article.description
         let articleURL = article.url
-        
         let articleEntity = CoreDataManager.shared.getArticleEntity(with: articleURL!)
-        
+        cell.titleLabel.text = articleEntity?.title
+        cell.authorLabel.text = articleEntity?.author
+        if let articleDescription = articleEntity?.description {
+            cell.descriptionLabel.text = articleDescription
+        } else {
+            cell.descriptionLabel.text = "Could not load content"
+        }
         if let articleImage = UIImage(data: (articleEntity?.image)!) {
             cell.favoriteArticleImageView.image = articleImage }
         else {

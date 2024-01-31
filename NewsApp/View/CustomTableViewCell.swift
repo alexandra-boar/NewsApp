@@ -36,25 +36,25 @@ class CustomTableViewCell: UITableViewCell {
         guard let viewModel = viewModel, let index = index else { return }
         viewModel.toggleFavoriteForArticle(index: index)
         isFavorite.toggle()
-        
         guard let article = viewModel.getArticle(index: index) else {return}
-        
-        func loadImage(with string: String?) {
-            guard let string else {
-                let defaultImage = UIImage(named: "defaultImage")
-                let defaultImageData = defaultImage!.pngData()
-                self.coreDataService.addArticle(article: article, imageData: defaultImageData!)
-                return
-            }
-            viewModel.downloadImage(urlString: string) { image in
-                if let image {
-                    self.coreDataService.addArticle(article: article, imageData: image)
-                }
+        loadImage(with: article.urlToImage)
+    }
+    
+    
+    func loadImage(with string: String?) {
+        guard let viewModel = viewModel, let index = index else { return }
+        guard let article = viewModel.getArticle(index: index) else {return}
+        guard let string else {
+            let defaultImage = UIImage(named: "defaultImage")
+            let defaultImageData = defaultImage!.pngData()
+            self.coreDataService.addArticle(article: article, imageData: defaultImageData!)
+            return
+        }
+        viewModel.downloadImage(urlString: string) { image in
+            if let image {
+                self.coreDataService.addArticle(article: article, imageData: image)
             }
         }
-        
-        loadImage(with: article.urlToImage)
-        
     }
     
     
