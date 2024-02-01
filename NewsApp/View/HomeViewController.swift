@@ -59,11 +59,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             print("Could not find urlKey")
             return
         }
+        
         UserDefaults.standard.setValue(cell.isSelected, forKey: urlKey)
-        
-        print("Article URL: \(articleViewModel.getArticleUrl(index: indexPath.row) ?? "Can't find Article URL")" )
-        let articleURL = articleViewModel.getArticleUrl(index: indexPath.row)
-        
+                
         cell.checkmarkImage.image = UIImage(systemName: Constants.checkedImage)
         
         if let vc = storyboard?.instantiateViewController(withIdentifier: Constants.detailViewIdentifier) as? DetailViewController {

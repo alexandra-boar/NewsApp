@@ -48,23 +48,7 @@ extension FavoritesViewController: UIScrollViewDelegate, UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoritesCollectionViewCell", for: indexPath) as! FavoritesCollectionViewCell
         
-        cell.favoriteArticleImageView.contentMode = .scaleAspectFill
-        
-        let article = favoritesViewModel.articles![indexPath.row]
-        let articleURL = article.url
-        let articleEntity = CoreDataManager.shared.getArticleEntity(with: articleURL!)
-        cell.titleLabel.text = articleEntity?.title
-        cell.authorLabel.text = articleEntity?.author
-        if let articleDescription = articleEntity?.description {
-            cell.descriptionLabel.text = articleDescription
-        } else {
-            cell.descriptionLabel.text = "Could not load content"
-        }
-        if let articleImage = UIImage(data: (articleEntity?.image)!) {
-            cell.favoriteArticleImageView.image = articleImage }
-        else {
-            cell.favoriteArticleImageView.image = UIImage(named: "defaultImage")
-        }
+        cell.configureCellInfo(viewModel: favoritesViewModel, indexPath: indexPath.row)
         
         return cell
         
