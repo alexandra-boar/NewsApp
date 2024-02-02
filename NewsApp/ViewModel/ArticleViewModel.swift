@@ -8,16 +8,15 @@
 import UIKit
 
 class ArticleViewModel {
-    
+
     var articleList: [Article]?
     let articleService = ArticleServiceAPI()
     let defaults = UserDefaults.standard
     let coreDataManager = CoreDataManager.shared
-    
-    
+
     func loadArticles(completion: @escaping (Error?) -> ()) {
         let managedArticles = coreDataManager.getArticles()
-        
+
         articleService.loadArticles { articles, error in
             if let articles {
                 self.articleList = articles.map { article in
@@ -37,8 +36,7 @@ class ArticleViewModel {
             }
         }
     }
-        
-        
+
         func getArticle(index: Int) -> Article? {
             if let list = articleList {
                 return list[index]
@@ -46,16 +44,16 @@ class ArticleViewModel {
                 return nil
             }
         }
-        
+
         // cell config
         func getNumberOfArticles() -> Int {
             return articleList?.count ?? 0
         }
-        
+
         func toggleFavoriteForArticle(index: Int) {
             articleList?[index].isFavorite.toggle()
         }
-        
+
         func getArticleTitle(index: Int) -> String? {
             if let title = getArticle(index: index)?.title {
                 return (title)
@@ -63,7 +61,7 @@ class ArticleViewModel {
                 return (nil)
             }
         }
-        
+
         func isArticleFavorite(index: Int) -> Bool {
             if let isFavorite = getArticle(index: index)?.isFavorite {
                 return isFavorite
@@ -71,8 +69,7 @@ class ArticleViewModel {
                 return false
             }
         }
-        
-        
+
         func getArticleAuthor(index: Int) -> String? {
             if let author = getArticle(index: index)?.author {
                 return (author)
@@ -80,7 +77,7 @@ class ArticleViewModel {
                 return ("Unknown author")
             }
         }
-        
+
         func getArticleContent(index: Int) -> String? {
             if let content = getArticle(index: index)?.content {
                 return (content)
@@ -88,7 +85,7 @@ class ArticleViewModel {
                 return ("Could not load content. Read More")
             }
         }
-        
+
         func getArticleDescription(index: Int) -> String? {
             if let description = getArticle(index: index)?.description {
                 return (description)
@@ -96,7 +93,7 @@ class ArticleViewModel {
                 return ("Could not load content.")
             }
         }
-        
+
         func getArticleUrl(index: Int) -> String? {
             if let url = getArticle(index: index)?.url {
                 return (url)
@@ -104,7 +101,7 @@ class ArticleViewModel {
                 return nil
             }
         }
-        
+
         func getImageUrl(index: Int) -> String? {
             if let imageUrl = getArticle(index: index)?.urlToImage {
                 print(imageUrl)
@@ -113,7 +110,7 @@ class ArticleViewModel {
                 return nil
             }
         }
-    
+
     func downloadImage(urlString: String, completion: @escaping (Data?) -> ()) {
         articleService.loadArticleImage(urlString: urlString) { image in
             if let image, let imageData = image.pngData() {
@@ -123,6 +120,4 @@ class ArticleViewModel {
             }
         }
     }
-        
-    
 }

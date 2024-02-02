@@ -15,18 +15,18 @@ class FavoritesCarouselFlowLayout: UICollectionViewFlowLayout {
         scrollDirection = .horizontal
         itemSize = CGSize(width: Constants.favoritesCellWidth, height: Constants.favoritesCellHeight)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
         guard let collectionView = collectionView else { return proposedContentOffset }
-        
+
         let targetRect = CGRect(x: proposedContentOffset.x, y: 0, width: collectionView.frame.width, height: collectionView.frame.height)
         let horizontalCenter = proposedContentOffset.x + collectionView.frame.width / 2
         var offsetAdjustment = CGFloat.greatestFiniteMagnitude
-        
+
         // Retrieve the layout attributes for all of the cells in the target rectangle.
         guard let attributesList = super.layoutAttributesForElements(in: targetRect) else { return proposedContentOffset }
         for attributes in attributesList {
@@ -37,5 +37,4 @@ class FavoritesCarouselFlowLayout: UICollectionViewFlowLayout {
         }
         return CGPoint(x: proposedContentOffset.x + offsetAdjustment, y: proposedContentOffset.y)
     }
-    
 }

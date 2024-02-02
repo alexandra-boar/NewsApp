@@ -35,8 +35,8 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
             descriptionLabel.text = "Could not load content"
         }
         if let articleImage = UIImage(data: (articleEntity?.image)!) {
-            favoriteArticleImageView.image = articleImage }
-        else {
+            favoriteArticleImageView.image = articleImage
+        } else {
             favoriteArticleImageView.image = UIImage(named: "defaultImage")
         }
     }

@@ -14,13 +14,13 @@ protocol FavoriteArticlesViewModelDelegate: AnyObject {
 }
 
 class FavoriteArticlesViewModel {
-    
+
     let coreDataManager = CoreDataManager.shared
     let articleService = ArticleServiceAPI()
-    
+
     weak var delegate: FavoriteArticlesViewModelDelegate?
     private(set) var articles: [Article]?
-    
+
     func loadArticles() {
         let articles = coreDataManager.getArticles()
         self.articles = articles

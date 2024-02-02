@@ -10,7 +10,6 @@ import CoreData
 import UIKit
 
 class CoreDataManager {
-    
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "CoreDataModel")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
@@ -20,15 +19,15 @@ class CoreDataManager {
         })
         return container
     }()
-    
+
     static let shared = CoreDataManager()
-    
+
     func addArticle(article: Article, imageData: Data) {
         // article -> core data entity
-        
+
         // create core data entity
         let articleEntity = ArticleEntity(context: persistentContainer.viewContext)
-        
+
         // set core data entity details
         articleEntity.title = article.title
         articleEntity.author = article.author
@@ -40,22 +39,22 @@ class CoreDataManager {
         // save new entity
         saveContext()
     }
-    
+
     private func getArticleEntities() -> [NSManagedObject] {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ArticleEntity")
         do {
-            return try persistentContainer.viewContext.fetch(fetchRequest) as! [NSManagedObject]
+            return try persistentContainer.viewContext.fetch(fetchRequest) as? [NSManagedObject] ?? []
         } catch {
             return []
         }
     }
-    
+
     func getArticles() -> [Article] {
         let managedObjects = getArticleEntities()
         let articles = managedObjects.map { managedObject in
             Article(
                 author: managedObject.value(forKey: "author") as? String,
-                title: managedObject.value(forKey: "title") as? String, 
+                title: managedObject.value(forKey: "title") as? String,
                 description: managedObject.value(forKey: "articleDescription") as? String,
                 content: managedObject.value(forKey: "content") as? String,
                 url: managedObject.value(forKey: "url") as? String,
@@ -64,7 +63,7 @@ class CoreDataManager {
         }
         return articles
     }
-    
+
     func getArticleEntity(with url: String) -> ArticleEntity? {
         let request = NSFetchRequest<ArticleEntity>(entityName: "ArticleEntity")
         request.predicate = NSPredicate(format: "url = %@", url) // check for string
@@ -75,14 +74,13 @@ class CoreDataManager {
             return nil
         }
     }
-    
-    
+
     func saveImage(for articleURL: String, with imageData: Data) {
         let articleEntity = ArticleEntity(context: persistentContainer.viewContext)
         articleEntity.image = imageData
         saveContext()
     }
-    
+
     func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {

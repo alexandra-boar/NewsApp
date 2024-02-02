@@ -36,14 +36,15 @@ class HomeViewController: UIViewController {
     }
 }
 
-
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         articleViewModel.getNumberOfArticles()
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.newsTableCellIdentifier, for: indexPath) as! CustomTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.newsTableCellIdentifier, for: indexPath) as? CustomTableViewCell else {
+            return UITableViewCell()
+        }
         cell.configureCell(viewModel: articleViewModel, indexPath: indexPath.row)
         return cell
     }
@@ -53,7 +54,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! CustomTableViewCell
+        guard let cell = tableView.cellForRow(at: indexPath) as? CustomTableViewCell else {return}
         
         guard let urlKey = articleViewModel.getArticleUrl(index: indexPath.row) else {
             print("Could not find urlKey")
@@ -64,15 +65,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 
         cell.checkmarkImage.image = UIImage(systemName: Constants.checkedImage)
         
-        if let vc = storyboard?.instantiateViewController(withIdentifier: Constants.detailViewIdentifier) as? DetailViewController {
-            
-            vc.articleDescription = articleViewModel.getArticleDescription(index: indexPath.row)
-            vc.articleAuthor = articleViewModel.getArticleAuthor(index: indexPath.row)
-            vc.articleURLString = articleViewModel.getArticleUrl(index: indexPath.row)
+        if let detailVC = storyboard?.instantiateViewController(withIdentifier: Constants.detailViewIdentifier) as? DetailViewController {
+        
+            detailVC.articleDescription = articleViewModel.getArticleDescription(index: indexPath.row)
+            detailVC.articleAuthor = articleViewModel.getArticleAuthor(index: indexPath.row)
+            detailVC.articleURLString = articleViewModel.getArticleUrl(index: indexPath.row)
             let imageURL = articleViewModel.getImageUrl(index: indexPath.row)
-            vc.imageURLString = imageURL
-            self.navigationController?.pushViewController(vc, animated: true)
+            detailVC.imageURLString = imageURL
+            self.navigationController?.pushViewController(detailVC, animated: true)
         }
     }
 }
-

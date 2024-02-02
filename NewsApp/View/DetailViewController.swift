@@ -8,10 +8,10 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-    
+
     @IBOutlet weak var articleImageView: UIImageView!
     @IBOutlet weak var detailTextView: UITextView!
-    
+
     var articleDescription: String?
     var articleAuthor: String? {
         didSet {
@@ -22,7 +22,7 @@ class DetailViewController: UIViewController {
     var imageURLString: String?
     var articleURLString: String?
     var detailViewModel = DetailViewModel()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -30,7 +30,7 @@ class DetailViewController: UIViewController {
         configureTextView()
         loadImage(with: imageURLString)
     }
-   
+
     func configureTextView() {
         guard let articleDescription, let articleURLString else {
             return
@@ -45,7 +45,7 @@ class DetailViewController: UIViewController {
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ]
     }
-    
+
     func loadImage(with string: String?) {
         guard let string else {
             let defaultImage = UIImage(named: "defaultImage")
@@ -64,30 +64,27 @@ class DetailViewController: UIViewController {
             }
         }
     }
-    
+
     func setConstraints() {
         articleImageView.translatesAutoresizingMaskIntoConstraints = false
         detailTextView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             articleImageView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 0),
             articleImageView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: 0),
             articleImageView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: -20),
             articleImageView.bottomAnchor.constraint(equalTo: detailTextView.layoutMarginsGuide.topAnchor, constant: 20),
             articleImageView.heightAnchor.constraint(equalToConstant: 300),
-            
+
             detailTextView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 0),
             detailTextView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: 0),
             detailTextView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: 0)
-            
+
         ])
-        
     }
-    
 }
 
 extension DetailViewController: UITextViewDelegate {
-    
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         let webViewController = ArticleWebViewController(url: URL)
         let navController = UINavigationController(rootViewController: webViewController)

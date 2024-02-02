@@ -8,11 +8,10 @@
 import Foundation
 import UIKit
 
-
 class FavoritesViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-        
+    
     let myCollectionViewLayout: UICollectionViewFlowLayout = FavoritesCarouselFlowLayout()
     let favoritesViewModel = FavoriteArticlesViewModel()
     
@@ -46,18 +45,18 @@ extension FavoritesViewController: UIScrollViewDelegate, UICollectionViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoritesCollectionViewCell", for: indexPath) as! FavoritesCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoritesCollectionViewCell", for: indexPath) as? FavoritesCollectionViewCell else {
+            return UICollectionViewCell()
+        }
         
         cell.configureCellInfo(viewModel: favoritesViewModel, indexPath: indexPath.row)
         
         return cell
-        
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
-    
 }
 
 extension FavoritesViewController: FavoriteArticlesViewModelDelegate {
@@ -68,5 +67,4 @@ extension FavoritesViewController: FavoriteArticlesViewModelDelegate {
     func articlesLoadedWithFailure(error: Error) {
         print(error)
     }
-    
 }

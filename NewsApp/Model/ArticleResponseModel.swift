@@ -21,8 +21,8 @@ struct Article: Codable {
     let url: String?
     let urlToImage: String?
     var isFavorite: Bool = false
-    var image: UIImage? = nil
-    
+    var image: UIImage?
+
     enum CodingKeys: CodingKey {
         case author
         case title
