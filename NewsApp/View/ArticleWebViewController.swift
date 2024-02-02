@@ -9,7 +9,7 @@ import Foundation
 import WebKit
 
 class ArticleWebViewController: UIViewController {
-        
+
     let webView: WKWebView = {
         let preferences = WKWebpagePreferences()
         preferences.allowsContentJavaScript = true
@@ -19,9 +19,9 @@ class ArticleWebViewController: UIViewController {
         webView.configuration.dataDetectorTypes = .link
         return webView
     }()
-    
+
     private let url: URL
-    
+
     init(url: URL) {
         self.url = url
         super.init(nibName: nil, bundle: nil)
@@ -36,10 +36,9 @@ class ArticleWebViewController: UIViewController {
         view.addSubview(webView)
         webView.load(URLRequest(url: url))
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         webView.frame = view.bounds
     }
 }
-    

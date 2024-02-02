@@ -28,8 +28,8 @@ class GradientView: UIView {
         gradientLayer.type = .axial
         gradientLayer.colors = [
             baseColor.withAlphaComponent(0.0),
-            baseColor.withAlphaComponent(1),
-        ].map{$0.cgColor}
+            baseColor.withAlphaComponent(1)
+        ].map {$0.cgColor}
         gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.3)
         gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.45)
         layer.addSublayer(gradientLayer)

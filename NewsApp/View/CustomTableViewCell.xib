@@ -43,6 +43,9 @@
                                 <rect key="frame" x="15.666666666666686" y="0.0" width="52" height="38"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="star" catalog="system"/>
+                                <connections>
+                                    <action selector="addToFavorites:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lQB-vU-Aij"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ios-checkmark-circle-11" translatesAutoresizingMaskIntoConstraints="NO" id="fBS-29-Mxc">
                                 <rect key="frame" x="0.0" y="58" width="83" height="38"/>
@@ -63,6 +66,7 @@
             <connections>
                 <outlet property="authorLabel" destination="b36-CF-l4b" id="jYW-tP-m5b"/>
                 <outlet property="checkmarkImage" destination="fBS-29-Mxc" id="O9l-fL-Wy3"/>
+                <outlet property="favoritesButton" destination="XtY-oD-04u" id="V0U-Mo-5cZ"/>
                 <outlet property="titleLabel" destination="VpJ-xC-dCg" id="O8e-ph-3kw"/>
             </connections>
             <point key="canvasLocation" x="208.3969465648855" y="12.67605633802817"/>

@@ -11,7 +11,7 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var favoriteArticleImageView: UIImageView!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var flipButton: UIButton!
     @IBOutlet weak var gradientView: UIView!
     
@@ -19,14 +19,31 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         configureCell()
         configureFavoriteArticleImageView()
-        configureContentLabel()
+        configureDescriptionLabel()
+    }
+    
+    func configureCellInfo(viewModel: FavoriteArticlesViewModel, indexPath: Int) {
+        let article = viewModel.articles![indexPath]
+        let articleURL = article.url
+        let articleEntity = CoreDataManager.shared.getArticleEntity(with: articleURL!)
+        
+        titleLabel.text = articleEntity?.title
+        authorLabel.text = articleEntity?.author
+        if let articleDescription = articleEntity?.articleDescription {
+            descriptionLabel.text = articleDescription
+        } else {
+            descriptionLabel.text = "Could not load content"
+        }
+        if let articleImage = UIImage(data: (articleEntity?.image)!) {
+            favoriteArticleImageView.image = articleImage
+        } else {
+            favoriteArticleImageView.image = UIImage(named: "defaultImage")
+        }
     }
     
     func configureCell() {
-        titleLabel.text = "Title"
         titleLabel.font = UIFont.boldSystemFont(ofSize: 24)
         titleLabel.textColor = UIColor.white
-        authorLabel.text = "Author"
         authorLabel.font = UIFont.boldSystemFont(ofSize: 18)
         authorLabel.textColor = UIColor.white
         self.backgroundColor = UIColor.systemBlue
@@ -41,16 +58,13 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
         favoriteArticleImageView.clipsToBounds = true
         favoriteArticleImageView.contentMode = .scaleAspectFill
         favoriteArticleImageView.layer.masksToBounds = true
-        favoriteArticleImageView.image = UIImage(named: "defaultImage")
         favoriteArticleImageView.autoresizingMask  = [.flexibleTopMargin, .flexibleHeight, .flexibleRightMargin, .flexibleLeftMargin, .flexibleTopMargin, .flexibleWidth]
     }
     
-    func configureContentLabel() {
-        contentLabel.text = "Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum"
-        contentLabel.numberOfLines = 0
-        contentLabel.lineBreakMode = .byWordWrapping
-        contentLabel.font = UIFont.systemFont(ofSize: 17)
-        contentLabel.textColor = UIColor.white
+    func configureDescriptionLabel() {
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.lineBreakMode = .byWordWrapping
+        descriptionLabel.font = UIFont.systemFont(ofSize: 17)
+        descriptionLabel.textColor = UIColor.white
     }
-
 }
