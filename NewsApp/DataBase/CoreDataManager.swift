@@ -81,6 +81,16 @@ class CoreDataManager {
         saveContext()
     }
 
+    func deleteArticle(url: String) {
+        let articles = getArticleEntities()
+        if let articleForDelete = articles.first(where: { article in
+            (article.value(forKey: "url") as? String) == url
+        }) {
+            persistentContainer.viewContext.delete(articleForDelete)
+            saveContext()
+        }
+    }
+
     func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {

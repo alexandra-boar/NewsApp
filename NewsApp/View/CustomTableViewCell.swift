@@ -34,10 +34,17 @@ class CustomTableViewCell: UITableViewCell {
 
     @IBAction func addToFavorites(_ sender: UIButton) {
         guard let viewModel = viewModel, let index = index else { return }
-        viewModel.toggleFavoriteForArticle(index: index)
-        isFavorite.toggle()
         guard let article = viewModel.getArticle(index: index) else {return}
-        loadImage(with: article.urlToImage)
+        if isFavorite == false {
+            viewModel.toggleFavoriteForArticle(index: index)
+            isFavorite.toggle()
+            loadImage(with: article.urlToImage)
+        } else {
+            let articleEntity = coreDataService.getArticleEntity(with: article.url!)
+            coreDataService.deleteArticle(url: (articleEntity?.url)!)
+            viewModel.toggleFavoriteForArticle(index: index)
+            isFavorite.toggle()
+        }
     }
 
     func loadImage(with string: String?) {

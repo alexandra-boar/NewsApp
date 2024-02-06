@@ -49,7 +49,7 @@
                         </subviews>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7r-9S-B87">
-                        <rect key="frame" x="20" y="211.66666666666666" width="611" height="20.333333333333343"/>
+                        <rect key="frame" x="20" y="201.66666666666666" width="611" height="20.333333333333343"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -65,7 +65,7 @@
                 <constraint firstAttribute="trailing" secondItem="z7r-9S-B87" secondAttribute="trailing" constant="20" id="1i7-g4-dvf"/>
                 <constraint firstAttribute="bottom" secondItem="mqp-fh-ymh" secondAttribute="bottom" id="4yo-wc-M7s"/>
                 <constraint firstItem="mqp-fh-ymh" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="AII-yO-l1U"/>
-                <constraint firstItem="z7r-9S-B87" firstAttribute="top" secondItem="5VX-h8-aDc" secondAttribute="bottom" constant="20" id="ASr-nd-3Qp"/>
+                <constraint firstItem="z7r-9S-B87" firstAttribute="top" secondItem="5VX-h8-aDc" secondAttribute="bottom" constant="10" id="ASr-nd-3Qp"/>
                 <constraint firstAttribute="trailing" secondItem="mqp-fh-ymh" secondAttribute="trailing" id="Emr-oo-f9m"/>
                 <constraint firstAttribute="bottom" secondItem="G82-ql-tJL" secondAttribute="bottom" constant="15" id="HFw-zD-470"/>
                 <constraint firstItem="z7r-9S-B87" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="Jmz-bU-G5b"/>

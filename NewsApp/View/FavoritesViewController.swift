@@ -16,21 +16,25 @@ class FavoritesViewController: UIViewController {
     let favoritesViewModel = FavoriteArticlesViewModel()
     
     override func viewDidLoad() {
-        let screenWidth = UIScreen.main.bounds.width
-        let contentInset = (Double(screenWidth) + Constants.favoritesCellWidth)/2
-        
+//        let screenWidth = UIScreen.main.bounds.width
+//        let contentInset = (Double(screenWidth) + Constants.favoritesCellWidth)/2
+
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib.init(nibName: Constants.favoritesCollectionViewCellIdentifier, bundle: nil), forCellWithReuseIdentifier: Constants.favoritesCollectionViewCellIdentifier)
         collectionView.collectionViewLayout = myCollectionViewLayout
         collectionView.decelerationRate = .fast
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: contentInset, bottom: 0, right: contentInset)
+//        collectionView.contentInset = UIEdgeInsets(top: 0, left: contentInset, bottom: 0, right: contentInset)
         
         favoritesViewModel.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         favoritesViewModel.loadArticles()
+        let articles = favoritesViewModel.articles
+        if articles!.count != 0 {
+            collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredHorizontally, animated: false)
+        }
     }
 }
 
