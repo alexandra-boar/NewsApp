@@ -26,4 +26,12 @@ class FavoriteArticlesViewModel {
         self.articles = articles
         delegate?.articlesLoaded(articles: articles)
     }
+
+    func getArticle(index: Int) -> Article? {
+        if let articles = articles {
+            return articles[index]
+        } else {
+            return nil
+        }
+    }
 }

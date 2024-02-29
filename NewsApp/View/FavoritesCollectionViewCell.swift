@@ -8,6 +8,7 @@
 import UIKit
 
 class FavoritesCollectionViewCell: UICollectionViewCell {
+
     @IBOutlet weak var favoriteArticleImageView: UIImageView!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
@@ -15,8 +16,6 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var flipButton: UIButton!
     @IBOutlet weak var gradientView: UIView!
 
-    var index: Int?
-    var viewModel: ArticleViewModel?
     var coreDataService = CoreDataManager.shared
 
     override func awakeFromNib() {
@@ -24,25 +23,6 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
         configureCell()
         configureFavoriteArticleImageView()
         configureDescriptionLabel()
-        let gestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeUp))
-        gestureRecognizer.direction = .up
-        gestureRecognizer.numberOfTouchesRequired = 1
-        self.addGestureRecognizer(gestureRecognizer)
-        self.isUserInteractionEnabled = true
-    }
-
-    @objc func swipeUp(_ gesture: UISwipeGestureRecognizer) {
-        if let cellToDelete = gesture.view {
-            swipeToDelete(cellToDelete)
-            print("gesture fired!")
-        }
-    }
-
-    func swipeToDelete(_: UIView ) {
-        guard let viewModel = viewModel, let index = index else { return }
-        guard let article = viewModel.getArticle(index: index) else {return}
-        let articleEntity = coreDataService.getArticleEntity(with: article.url!)
-        coreDataService.deleteArticle(url: (articleEntity?.url)!)
     }
 
     func configureCellInfo(viewModel: FavoriteArticlesViewModel, indexPath: Int) {

@@ -20,8 +20,8 @@ class CustomTableViewCell: UITableViewCell {
 
     var isFavorite: Bool = false {
         didSet {
-        let favoriteImage = isFavorite ? UIImage(systemName: Constants.favoriteImage) : UIImage(systemName: Constants.unfavoriteImage)
-        favoritesButton.setImage(favoriteImage, for: .normal)
+            let favoriteImage = isFavorite ? UIImage(systemName: Constants.favoriteImage) : UIImage(systemName: Constants.unfavoriteImage)
+            favoritesButton.setImage(favoriteImage, for: .normal)
         }
     }
 
@@ -64,7 +64,7 @@ class CustomTableViewCell: UITableViewCell {
     }
 
 func configureCell(viewModel: ArticleViewModel, indexPath: Int) {
-        self.viewModel=viewModel
+        self.viewModel = viewModel
         self.index = indexPath
         self.isFavorite = viewModel.isArticleFavorite(index: indexPath)
 
