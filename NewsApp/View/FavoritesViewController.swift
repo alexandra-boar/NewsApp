@@ -70,8 +70,8 @@ extension FavoritesViewController: UIScrollViewDelegate, UICollectionViewDelegat
         UIView.animate(withDuration: 0.5, delay: 0, options: .allowAnimatedContent) {
             cell.transform = CGAffineTransform(translationX: 0, y: -500)
         } completion: { done in
-            CoreDataManager.shared.deleteArticle(url: (articleEntity?.url)!)
-            self.favoritesViewModel.loadArticles()
+            guard let articleEntityURL = articleEntity?.url else { return }
+            CoreDataManager.shared.deleteArticle(url: (articleEntityURL))
             cell.transform = CGAffineTransformIdentity
         }
     }

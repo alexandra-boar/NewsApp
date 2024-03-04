@@ -88,6 +88,7 @@ class CoreDataManager {
         }) {
             persistentContainer.viewContext.delete(articleForDelete)
             saveContext()
+            NotificationCenter.default.post(name: Constants.deleteNotification, object: nil, userInfo: ["url": url])
         }
     }
 

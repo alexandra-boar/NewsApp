@@ -27,4 +27,6 @@ struct Constants {
     static let favoritesCellWidth = 300.0
     static let favoritesCellHeight = 380.0
 
+    static let deleteNotification = Notification.Name("favoriteArticleDeleted")
+
 }
