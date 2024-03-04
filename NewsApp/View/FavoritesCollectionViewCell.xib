@@ -49,15 +49,11 @@
                         </subviews>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7r-9S-B87">
-                        <rect key="frame" x="20" y="211.66666666666666" width="611" height="20.333333333333343"/>
+                        <rect key="frame" x="20" y="201.66666666666666" width="611" height="20.333333333333343"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G82-ql-tJL">
-                        <rect key="frame" x="539.33333333333337" y="991" width="96.666666666666629" height="28"/>
-                        <buttonConfiguration key="configuration" style="gray" title="Flip to read" buttonSize="small"/>
-                    </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -65,15 +61,13 @@
                 <constraint firstAttribute="trailing" secondItem="z7r-9S-B87" secondAttribute="trailing" constant="20" id="1i7-g4-dvf"/>
                 <constraint firstAttribute="bottom" secondItem="mqp-fh-ymh" secondAttribute="bottom" id="4yo-wc-M7s"/>
                 <constraint firstItem="mqp-fh-ymh" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="AII-yO-l1U"/>
-                <constraint firstItem="z7r-9S-B87" firstAttribute="top" secondItem="5VX-h8-aDc" secondAttribute="bottom" constant="20" id="ASr-nd-3Qp"/>
+                <constraint firstItem="z7r-9S-B87" firstAttribute="top" secondItem="5VX-h8-aDc" secondAttribute="bottom" constant="10" id="ASr-nd-3Qp"/>
                 <constraint firstAttribute="trailing" secondItem="mqp-fh-ymh" secondAttribute="trailing" id="Emr-oo-f9m"/>
-                <constraint firstAttribute="bottom" secondItem="G82-ql-tJL" secondAttribute="bottom" constant="15" id="HFw-zD-470"/>
                 <constraint firstItem="z7r-9S-B87" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="Jmz-bU-G5b"/>
                 <constraint firstAttribute="trailing" secondItem="dlr-hi-iYD" secondAttribute="trailing" id="PbP-tT-Dtv"/>
                 <constraint firstItem="5VX-h8-aDc" firstAttribute="top" secondItem="dlr-hi-iYD" secondAttribute="bottom" constant="-20" id="RA0-xd-psV"/>
                 <constraint firstItem="dlr-hi-iYD" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="XGt-hu-GfZ"/>
                 <constraint firstItem="5VX-h8-aDc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="k8P-zo-u0e"/>
-                <constraint firstAttribute="trailing" secondItem="G82-ql-tJL" secondAttribute="trailing" constant="15" id="mvu-Lx-5q7"/>
                 <constraint firstItem="dlr-hi-iYD" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="nC7-Xc-v6Y"/>
                 <constraint firstAttribute="trailing" secondItem="5VX-h8-aDc" secondAttribute="trailing" constant="20" id="pcz-zi-aXR"/>
                 <constraint firstItem="mqp-fh-ymh" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="v6y-vT-E6w"/>
@@ -83,7 +77,6 @@
                 <outlet property="authorLabel" destination="85l-6a-xAa" id="4WP-a4-UOn"/>
                 <outlet property="descriptionLabel" destination="z7r-9S-B87" id="syb-qu-6Hr"/>
                 <outlet property="favoriteArticleImageView" destination="dlr-hi-iYD" id="Mfc-o5-jYk"/>
-                <outlet property="flipButton" destination="G82-ql-tJL" id="ag9-Ty-Fah"/>
                 <outlet property="gradientView" destination="mqp-fh-ymh" id="Hoe-Gm-P9S"/>
                 <outlet property="titleLabel" destination="roF-2k-V51" id="c7Q-tx-C0F"/>
             </connections>

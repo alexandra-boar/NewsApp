@@ -45,6 +45,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.newsTableCellIdentifier, for: indexPath) as? CustomTableViewCell else {
             return UITableViewCell()
         }
+        
         cell.configureCell(viewModel: articleViewModel, indexPath: indexPath.row)
         return cell
     }

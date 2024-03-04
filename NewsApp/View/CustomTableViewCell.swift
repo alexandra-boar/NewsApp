@@ -20,9 +20,13 @@ class CustomTableViewCell: UITableViewCell {
 
     var isFavorite: Bool = false {
         didSet {
-        let favoriteImage = isFavorite ? UIImage(systemName: Constants.favoriteImage) : UIImage(systemName: Constants.unfavoriteImage)
-        favoritesButton.setImage(favoriteImage, for: .normal)
+            let favoriteImage = isFavorite ? UIImage(systemName: Constants.favoriteImage) : UIImage(systemName: Constants.unfavoriteImage)
+            favoritesButton.setImage(favoriteImage, for: .normal)
         }
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func awakeFromNib() {
@@ -30,14 +34,34 @@ class CustomTableViewCell: UITableViewCell {
         checkmarkImage.image = UIImage(systemName: Constants.uncheckedImage)
         titleLabel.font = UIFont.boldSystemFont(ofSize: 15.0)
         authorLabel.font = UIFont.systemFont(ofSize: 15.0)
+        setupObservers()
     }
 
     @IBAction func addToFavorites(_ sender: UIButton) {
         guard let viewModel = viewModel, let index = index else { return }
-        viewModel.toggleFavoriteForArticle(index: index)
-        isFavorite.toggle()
         guard let article = viewModel.getArticle(index: index) else {return}
-        loadImage(with: article.urlToImage)
+        if isFavorite == false {
+            viewModel.toggleFavoriteForArticle(index: index)
+            isFavorite.toggle()
+            loadImage(with: article.urlToImage)
+        } else {
+            let articleEntity = coreDataService.getArticleEntity(with: article.url!)
+            coreDataService.deleteArticle(url: (articleEntity?.url)!)
+        }
+    }
+
+    func setupObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(disableFavoriteOnDelete(notification:)), name: Constants.deleteNotification, object: nil)
+    }
+
+    @objc func disableFavoriteOnDelete(notification: NSNotification) {
+        guard let viewModel = viewModel, let index = index else { return }
+        guard let article = viewModel.getArticle(index: index) else { return }
+        guard let notificationURL = notification.userInfo?["url"] as? String else { return }
+        if notificationURL == article.url {
+            viewModel.toggleFavoriteForArticle(index: index)
+            isFavorite.toggle()
+        }
     }
 
     func loadImage(with string: String?) {
@@ -57,7 +81,7 @@ class CustomTableViewCell: UITableViewCell {
     }
 
 func configureCell(viewModel: ArticleViewModel, indexPath: Int) {
-        self.viewModel=viewModel
+        self.viewModel = viewModel
         self.index = indexPath
         self.isFavorite = viewModel.isArticleFavorite(index: indexPath)
 

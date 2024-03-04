@@ -11,7 +11,7 @@ import UIKit
 class FavoritesCarouselFlowLayout: UICollectionViewFlowLayout {
     override init() {
         super.init()
-        sectionInset = .init(top: 0.0, left: 0.0, bottom: 0.0, right: 20.0)
+        sectionInset = .init(top: 0.0, left: 40.0, bottom: 0.0, right: 20.0)
         scrollDirection = .horizontal
         itemSize = CGSize(width: Constants.favoritesCellWidth, height: Constants.favoritesCellHeight)
     }
