@@ -20,7 +20,7 @@ class HomeViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib.init(nibName: Constants.newsTableCellIdentifier, bundle: nil), forCellReuseIdentifier: Constants.newsTableCellIdentifier)
-        
+
         articleViewModel.loadArticles { error in
             if let error {
                 print(error)
@@ -30,9 +30,10 @@ class HomeViewController: UIViewController {
                 }
             }
         }
-        
-        self.parent?.title = "News"
+
         navigationController?.navigationBar.prefersLargeTitles = true
+        self.title = "News"
+
     }
 }
 
