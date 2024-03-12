@@ -22,6 +22,8 @@ class FavoritesViewController: UIViewController {
         collectionView.collectionViewLayout = myCollectionViewLayout
         collectionView.decelerationRate = .fast
         favoritesViewModel.delegate = self
+        navigationController?.navigationBar.prefersLargeTitles = true
+        self.title = "Favorites"
     }
 
     override func viewWillAppear(_ animated: Bool) {
